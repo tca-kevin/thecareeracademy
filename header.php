@@ -83,7 +83,7 @@ $menu_items = menu_build_tree(wp_get_nav_menu_items(get_nav_menu_locations()['he
 	<header class="shadow-sm">
 		<div class="container mx-auto px-4 flex items-center gap-x-8 h-20">
 			<a href="<?php echo home_url(); ?>">
-				<svg class="h-20 transition-all hover:scale-105" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1190.55 554.68">
+				<svg class="h-20 transition-all hover:fill-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1190.55 554.68">
 					<g>
 						<polygon points="512.01 203.1 534.03 203.1 534.03 133.19 564.31 133.19 564.31 115.72 481.73 115.72 481.73 133.19 512.01 133.19 512.01 203.1"></polygon>
 						<path d="M596.04,172.82c0-11.2,5.9-17.6,15.87-17.6s14.4,5.54,14.4,16.37v31.51h21.05v-33.72c0-19.44-9.23-29.78-26.46-29.78-11.44,0-20.18,4.8-24.86,13.91v-37.78h-21.05v87.38h21.05v-30.27Z"></path>
@@ -122,9 +122,11 @@ $menu_items = menu_build_tree(wp_get_nav_menu_items(get_nav_menu_locations()['he
 						<li class="h-full flex relative group" x-data="{ show_menu_item_child_<?php echo $menu_item_index; ?>: false }" x-on:mouseover="show_menu_item_child_<?php echo $menu_item_index; ?> = true" x-on:mouseover.away="show_menu_item_child_<?php echo $menu_item_index; ?> = false">
 							<a href="<?php echo $menu_item['url']; ?>" class="flex items-center gap-x-2 font-sans font-semibold text-lg text-black text-nowrap px-4 no-underline">
 								<span x-bind:class="{ 'transition-all text-green-500': show_menu_item_child_<?php echo $menu_item_index; ?> }"><?php echo $menu_item['title']; ?></span>
-								<svg x-bind:class="{ 'transition-all rotate-180': show_menu_item_child_<?php echo $menu_item_index; ?> }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
-									<path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-								</svg>
+								<?php if (isset($menu_item['children'])) { ?>
+									<svg x-bind:class="{ 'transition-all rotate-180': show_menu_item_child_<?php echo $menu_item_index; ?> }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
+										<path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+									</svg>
+								<?php } ?>
 							</a>
 							<?php if (isset($menu_item['children'])) { ?>
 								<div class="absolute bottom-0 left-0 transform translate-y-full bg-white shadow-md" x-cloak x-show="show_menu_item_child_<?php echo $menu_item_index; ?>" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95">
@@ -134,9 +136,11 @@ $menu_items = menu_build_tree(wp_get_nav_menu_items(get_nav_menu_locations()['he
 											<li class="h-full flex relative my-1 <?php echo ($x == 0 ? 'mt-2 ' : '') . (($x + 1) == count($menu_item['children']) ? 'mb-2 ' : '') . (count($menu_item['children']) == 1 ? 'my-2 ' : ''); ?> border-solid border-x-8 border-y-0 border-transparent" x-data="{ show_menu_item_grand_child_<?php echo $menu_item_child_index; ?>: false }" x-on:mouseover="show_menu_item_grand_child_<?php echo $menu_item_child_index; ?> = true" x-on:mouseover.away="show_menu_item_grand_child_<?php echo $menu_item_child_index; ?> = false">
 												<a href="<?php echo $menu_item_child['url']; ?>" class="flex justify-between items-center gap-x-2 font-sans font-normal text-base text-black text-nowrap px-4 py-1 no-underline w-full" x-bind:class="{ 'transition-all bg-green-500 bg-opacity-10': show_menu_item_grand_child_<?php echo $menu_item_child_index; ?> }">
 													<span x-bind:class="{ 'transition-all text-green-500': show_menu_item_grand_child_<?php echo $menu_item_child_index; ?> }"><?php echo $menu_item_child['title']; ?></span>
-													<svg x-bind:class="{ 'transition-all rotate-180': show_menu_item_grand_child_<?php echo $menu_item_child_index; ?> }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
-														<path fill-rule="evenodd" d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.75.75 0 0 1-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-													</svg>
+													<?php if (isset($menu_item_child['children'])) { ?>
+														<svg x-bind:class="{ 'transition-all rotate-180': show_menu_item_grand_child_<?php echo $menu_item_child_index; ?> }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
+															<path fill-rule="evenodd" d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.75.75 0 0 1-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+														</svg>
+													<?php } ?>
 												</a>
 												<?php if (isset($menu_item_child['children'])) { ?>
 													<div class="absolute -top-2 -right-2 transform translate-x-full bg-white shadow-md" x-cloak x-show="show_menu_item_grand_child_<?php echo $menu_item_child_index; ?>" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95">
@@ -146,18 +150,25 @@ $menu_items = menu_build_tree(wp_get_nav_menu_items(get_nav_menu_locations()['he
 																<li class="h-full flex relative my-1 <?php echo ($y == 0 ? 'mt-2 ' : '') . (($y + 1) == count($menu_item_child['children']) ? 'mb-2 ' : '') . (count($menu_item_child['children']) == 1 ? 'my-2 ' : ''); ?> border-solid border-x-8 border-y-0 border-transparent" x-data="{ show_menu_item_grand_grand_child_<?php echo $menu_item_grand_child_index; ?>: false }" x-on:mouseover="show_menu_item_grand_grand_child_<?php echo $menu_item_grand_child_index; ?> = true" x-on:mouseover.away="show_menu_item_grand_grand_child_<?php echo $menu_item_grand_child_index; ?> = false">
 																	<a href="<?php echo $menu_item_grand_child['url']; ?>" class="flex justify-between items-center gap-x-2 font-sans font-normal text-base text-black text-nowrap px-4 py-1 no-underline w-full" x-bind:class="{ 'transition-all bg-green-500 bg-opacity-10': show_menu_item_grand_grand_child_<?php echo $menu_item_grand_child_index; ?> }">
 																		<span x-bind:class="{ 'transition-all text-green-500': show_menu_item_grand_grand_child_<?php echo $menu_item_grand_child_index; ?> }"><?php echo $menu_item_grand_child['title']; ?></span>
-																		<svg x-bind:class="{ 'transition-all rotate-180': show_menu_item_grand_grand_child_<?php echo $menu_item_grand_child_index; ?> }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
-																			<path fill-rule="evenodd" d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.75.75 0 0 1-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-																		</svg>
+																		<?php if (isset($menu_item_grand_child['children'])) { ?>
+																			<svg x-bind:class="{ 'transition-all rotate-180': show_menu_item_grand_grand_child_<?php echo $menu_item_grand_child_index; ?> }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
+																				<path fill-rule="evenodd" d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.75.75 0 0 1-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+																			</svg>
+																		<?php } ?>
 																	</a>
 																	<?php if (isset($menu_item_grand_child['children'])) { ?>
 																		<div class="absolute -top-2 -right-2 transform translate-x-full bg-white shadow-md" x-cloak x-show="show_menu_item_grand_grand_child_<?php echo $menu_item_grand_child_index; ?>" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95">
 																			<ul class="flex flex-col list-none p-0 m-0">
 																				<?php $z = 0;
 																				foreach ($menu_item_grand_child['children'] as $menu_item_grand_grand_child_index => $menu_item_grand_grand_child) { ?>
-																					<li class="h-full flex relative my-1 <?php echo ($z == 0 ? 'mt-2 ' : '') . (($z + 1) == count($menu_item_grand_child['children']) ? 'mb-2 ' : '') . (count($menu_item_grand_child['children']) == 1 ? 'my-2 ' : ''); ?> border-solid border-x-8 border-y-0 border-transparent" x-data="{ show_menu_item_grand_grandgrand_child_<?php echo $menu_item_grand_grand_child_index; ?>: false }" x-on:mouseover="show_menu_item_grand_grandgrand_child_<?php echo $menu_item_grand_grand_child_index; ?> = true" x-on:mouseover.away="show_menu_item_grand_grandgrand_child_<?php echo $menu_item_grand_grand_child_index; ?> = false">
-																						<a href="<?php echo $menu_item_grand_grand_child['url']; ?>" class="flex justify-between items-center gap-x-2 font-sans font-normal text-base text-black text-nowrap px-4 py-1 no-underline w-full" x-bind:class="{ 'transition-all bg-green-500 bg-opacity-10': show_menu_item_grand_grandgrand_child_<?php echo $menu_item_grand_grand_child_index; ?> }">
-																							<span x-bind:class="{ 'transition-all text-green-500': show_menu_item_grand_grandgrand_child_<?php echo $menu_item_grand_grand_child_index; ?> }"><?php echo $menu_item_grand_grand_child['title']; ?></span>
+																					<li class="h-full flex relative my-1 <?php echo ($z == 0 ? 'mt-2 ' : '') . (($z + 1) == count($menu_item_grand_child['children']) ? 'mb-2 ' : '') . (count($menu_item_grand_child['children']) == 1 ? 'my-2 ' : ''); ?> border-solid border-x-8 border-y-0 border-transparent" x-data="{ show_menu_item_grand_grand_grand_child_<?php echo $menu_item_grand_grand_child_index; ?>: false }" x-on:mouseover="show_menu_item_grand_grand_grand_child_<?php echo $menu_item_grand_grand_child_index; ?> = true" x-on:mouseover.away="show_menu_item_grand_grand_grand_child_<?php echo $menu_item_grand_grand_child_index; ?> = false">
+																						<a href="<?php echo $menu_item_grand_grand_child['url']; ?>" class="flex justify-between items-center gap-x-2 font-sans font-normal text-base text-black text-nowrap px-4 py-1 no-underline w-full" x-bind:class="{ 'transition-all bg-green-500 bg-opacity-10': show_menu_item_grand_grand_grand_child_<?php echo $menu_item_grand_grand_child_index; ?> }">
+																							<span x-bind:class="{ 'transition-all text-green-500': show_menu_item_grand_grand_grand_child_<?php echo $menu_item_grand_grand_child_index; ?> }"><?php echo $menu_item_grand_grand_child['title']; ?></span>
+																							<?php if (isset($menu_item_grand_grand_child['children'])) { ?>
+																								<svg x-bind:class="{ 'transition-all rotate-180': show_menu_item_grand_grand_grand_child_<?php echo $menu_item_grand_grand_child_index; ?> }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
+																									<path fill-rule="evenodd" d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.75.75 0 0 1-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+																								</svg>
+																							<?php } ?>
 																						</a>
 																					</li>
 																				<?php
