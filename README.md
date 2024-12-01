@@ -1,1 +1,1 @@
-# The Career Academy #52
+# The Career Academy
