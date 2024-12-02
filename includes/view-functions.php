@@ -30,7 +30,7 @@ add_action('wp_head', function () {
 add_action('wp_enqueue_scripts', function () {
 	// wp_enqueue_style('storefront-style', get_template_directory_uri() . '/style.css'); // Storefront Child experiment
 
-	// wp_enqueue_style('adobe-fonts', 'https://use.typekit.net/phd3vdh.css', array(), null, 'print');
+	wp_enqueue_style('adobe-fonts', 'https://use.typekit.net/phd3vdh.css', array(), null, 'print');
 
 	if (defined('VITE_DEV') && VITE_DEV) {
 		echo '<script type="module" src="https://catest.test:5173/@vite/client"></script>';
