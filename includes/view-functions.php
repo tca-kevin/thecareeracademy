@@ -23,7 +23,7 @@ add_action('wp_head', function () {
 	];
 
 	foreach ($fonts as $font) {
-		echo '<link rel="preload" as="font"  href="' . esc_url($font) . '" type="font/woff2" crossorigin="anonymous">' . "\n";
+		echo '<link rel="preload" as="font" href="' . esc_url($font) . '" type="font/woff2" crossorigin="anonymous">' . "\n";
 	}
 }, 1);
 
