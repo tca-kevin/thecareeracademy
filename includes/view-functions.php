@@ -15,7 +15,7 @@ add_action('after_setup_theme', function () {
 add_action('wp_enqueue_scripts', function () {
 	// wp_enqueue_style('storefront-style', get_template_directory_uri() . '/style.css'); // Storefront Child experiment
 
-	wp_enqueue_style( 'adobe-fonts', 'https://use.typekit.net/phd3vdh.css' );
+	wp_enqueue_style('adobe-fonts', 'https://use.typekit.net/phd3vdh.css', array(), null, 'print');
 
 	if (defined('VITE_DEV') && VITE_DEV) {
 		echo '<script type="module" src="https://catest.test:5173/@vite/client"></script>';
@@ -73,8 +73,16 @@ add_filter(
 		if (($handle === 'src-js-app') || ($handle === 'dist-assets-js-app')) {
 			$tag = '<script type="module" src="' . $src . '"></script>';
 		}
+
 		return $tag;
 	},
 	10,
 	3
 );
+
+add_filter('style_loader_tag', function ($html, $handle) {
+	if ($handle === 'adobe-fonts') {
+		$html = str_replace("media='print'", "media='print' onload=\"this.media='all'\"", $html);
+	}
+	return $html;
+}, 10, 2);
