@@ -15,6 +15,8 @@ add_action('after_setup_theme', function () {
 add_action('wp_enqueue_scripts', function () {
 	// wp_enqueue_style('storefront-style', get_template_directory_uri() . '/style.css'); // Storefront Child experiment
 
+	wp_enqueue_style( 'adobe-fonts', 'https://use.typekit.net/phd3vdh.css' );
+
 	if (defined('VITE_DEV') && VITE_DEV) {
 		echo '<script type="module" src="https://catest.test:5173/@vite/client"></script>';
 		wp_enqueue_script('src-js-app', "https://catest.test:5173/src/js/app.js", array(), null);
