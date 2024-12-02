@@ -12,6 +12,21 @@ add_action('after_setup_theme', function () {
 	register_nav_menus(array('mobile-menu' => __('Mobile Menu', 'thecareeracademy'),));
 });
 
+add_action('wp_head', function () {
+	$fonts = [
+		'/wp-content/themes/thecareeracademy/dist/assets/fonts/DrukWide-Medium.woff2',
+		'/wp-content/themes/thecareeracademy/dist/assets/fonts/DrukWide-Bold.woff2',
+		'/wp-content/themes/thecareeracademy/dist/assets/fonts/DrukWide-Heavy.woff2',
+		'/wp-content/themes/thecareeracademy/dist/assets/fonts/DrukWide-MediumItalic.woff2',
+		'/wp-content/themes/thecareeracademy/dist/assets/fonts/DrukWide-BoldItalic.woff2',
+		'/wp-content/themes/thecareeracademy/dist/assets/fonts/DrukWide-HeavyItalic.woff2',
+	];
+
+	foreach ($fonts as $font) {
+		echo '<link rel="preload" href="' . esc_url($font) . '" as="font" type="font/woff2" crossorigin="anonymous">' . "\n";
+	}
+}, 1);
+
 add_action('wp_enqueue_scripts', function () {
 	// wp_enqueue_style('storefront-style', get_template_directory_uri() . '/style.css'); // Storefront Child experiment
 
@@ -86,19 +101,3 @@ add_filter('style_loader_tag', function ($html, $handle) {
 	}
 	return $html;
 }, 10, 2);
-
-
-add_action('wp_head', function () {
-	$fonts = [
-		'/wp-content/themes/thecareeracademy/dist/assets/fonts/DrukWide-Medium.woff2',
-		'/wp-content/themes/thecareeracademy/dist/assets/fonts/DrukWide-Bold.woff2',
-		'/wp-content/themes/thecareeracademy/dist/assets/fonts/DrukWide-Heavy.woff2',
-		'/wp-content/themes/thecareeracademy/dist/assets/fonts/DrukWide-MediumItalic.woff2',
-		'/wp-content/themes/thecareeracademy/dist/assets/fonts/DrukWide-BoldItalic.woff2',
-		'/wp-content/themes/thecareeracademy/dist/assets/fonts/DrukWide-HeavyItalic.woff2',
-	];
-
-	foreach ($fonts as $font) {
-		echo '<link rel="preload" href="' . esc_url($font) . '" as="font" type="font/woff2" crossorigin="anonymous">' . "\n";
-	}
-});
