@@ -44,17 +44,14 @@ function delete_categories($categories, $taxonomy)
  * Upsert subject posts
  *
  * @param [type] $categories
- * @param [type] $post_type
- * @param [type] $taxonomy
- * @param [type] $taxonomy_2
  * @return void
  */
-function upsert_subject_posts($categories, $post_type, $taxonomy, $taxonomy_2)
+function upsert_subject_posts($categories)
 {
 	foreach ($categories as $category_term => $category_name) {
 		$query = new WP_Query(array(
 			'title'      => $category_name,
-			'post_type'  => $post_type,
+			'post_type'  => 'subject',
 			'post_status' => 'any',
 			'fields'     => 'ids',
 		));
@@ -62,12 +59,12 @@ function upsert_subject_posts($categories, $post_type, $taxonomy, $taxonomy_2)
 		if (!$query->have_posts()) {
 			$post_id = wp_insert_post(array(
 				'post_title' => $category_name,
-				'post_type' => $post_type,
+				'post_type' => 'subject',
 				'post_status' => 'publish',
 			));
 
-			wp_set_object_terms($post_id, $category_term, $taxonomy);
-			wp_set_object_terms($post_id, 'Featured ' . ucfirst($post_type), $taxonomy_2);
+			wp_set_object_terms($post_id, $category_term, 'subject');
+			wp_set_object_terms($post_id, 'Featured ' . ucfirst('subject'), 'category');
 		}
 
 		wp_reset_postdata();
@@ -78,11 +75,9 @@ function upsert_subject_posts($categories, $post_type, $taxonomy, $taxonomy_2)
  * Upsert product posts
  *
  * @param [type] $categories
- * @param [type] $post_type
- * @param [type] $taxonomy
  * @return void
  */
-function upsert_product_posts($categories, $post_type, $taxonomy)
+function upsert_product_posts($categories)
 {
 	$levels = ['Certificate', 'Pathway', 'Diploma'];
 	$suffixes = ['A', 'B', 'C'];
@@ -92,7 +87,7 @@ function upsert_product_posts($categories, $post_type, $taxonomy)
 			foreach ($suffixes as $suffix) {
 				$query = new WP_Query(array(
 					'title'      => $level . ' in ' . $category_name . ' ' . $suffix,
-					'post_type'  => $post_type,
+					'post_type'  => 'product',
 					'post_status' => 'any',
 					'fields'     => 'ids',
 				));
@@ -100,11 +95,11 @@ function upsert_product_posts($categories, $post_type, $taxonomy)
 				if (!$query->have_posts()) {
 					$post_id = wp_insert_post(array(
 						'post_title'    => $level . ' in ' . $category_name . ' ' . $suffix,
-						'post_type'     => $post_type,
+						'post_type'     => 'product',
 						'post_status' => 'publish',
 					));
 
-					wp_set_object_terms($post_id, $category_term, $taxonomy);
+					wp_set_object_terms($post_id, $category_term, 'product_cat');
 				}
 
 				wp_reset_postdata();
@@ -203,10 +198,10 @@ add_action('admin_init', function () {
 	// upsert_categories($subject_categories, 'subject');
 	// upsert_categories($product_categories, 'product_cat');
 
-	// upsert_subject_posts($subject_categories, 'subject', 'subject', 'category');
-	// upsert_product_posts($product_categories, 'product', 'product_cat');
-
 	// delete_categories($post_categories, 'category');
 	// delete_categories($subject_categories, 'subject');
 	// delete_categories($product_categories, 'product_cat');
+
+	// upsert_subject_posts($subject_categories);
+	// upsert_product_posts($product_categories);
 });
