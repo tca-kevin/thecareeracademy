@@ -71,6 +71,7 @@ function manage_scripts_and_styles_at_the_start()
 		wp_dequeue_style('woocommerce-smallscreen'); // /wp-content/plugins/woocommerce/assets/css/woocommerce-smallscreen.css
 		wp_dequeue_style('woocommerce-general'); // /wp-content/plugins/woocommerce/assets/css/woocommerce.css
 		wp_dequeue_style('woocommerce-inline'); // id='woocommerce-inline-inline-css'
+
 		// wp_dequeue_style('wp-block-library-theme'); // id='wp-block-library-theme-inline-css', Storefront Child experiment
 		// wp_dequeue_style('storefront-gutenberg-blocks'); // id='storefront-gutenberg-blocks-inline-css', Storefront Child experiment
 		// add_filter('storefront_customizer_css', '__return_false'); // id='storefront-style-inline-css', Storefront Child experiment
