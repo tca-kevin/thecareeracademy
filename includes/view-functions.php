@@ -23,7 +23,7 @@ add_action('wp_head', function () {
 	];
 
 	foreach ($fonts as $font) {
-		echo '<link rel="preload" href="' . esc_url($font) . '" as="font" type="font/woff2" crossorigin="anonymous">' . "\n";
+		echo '<link rel="preload" as="font"  href="' . esc_url($font) . '" type="font/woff2" crossorigin="anonymous">' . "\n";
 	}
 }, 1);
 
@@ -85,8 +85,13 @@ add_filter('body_class', function ($classes) {
 add_filter(
 	'script_loader_tag',
 	function ($tag, $handle, $src) {
-		if (($handle === 'src-js-app') || ($handle === 'dist-assets-js-app')) {
+		if ($handle === 'src-js-app') {
 			$tag = '<script type="module" src="' . $src . '"></script>';
+		}
+
+		if ($handle === 'dist-assets-js-app') {
+			$tag = '<script type="module" src="' . $src . '" defer></script>';
+			// $tag = '<link rel="preload" href="' . $src . '" as="script" />';
 		}
 
 		return $tag;
@@ -97,7 +102,11 @@ add_filter(
 
 add_filter('style_loader_tag', function ($html, $handle) {
 	if ($handle === 'adobe-fonts') {
-		$html = str_replace("media='print'", "media='print' onload=\"this.media='all'\"", $html);
+		$html = str_replace("media='print'", "media='all'", $html);
+	}
+
+	if ($handle === 'style') {
+		$html = str_replace("<link rel='stylesheet'", "<link rel='preload' as='style' onload=\"this.onload=null; this.rel='stylesheet'\"", $html);
 	}
 	return $html;
 }, 10, 2);
