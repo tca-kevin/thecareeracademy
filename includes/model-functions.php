@@ -46,9 +46,10 @@ function delete_categories($categories, $taxonomy)
  * @param [type] $categories
  * @param [type] $post_type
  * @param [type] $taxonomy
+ * @param [type] $taxonomy_2
  * @return void
  */
-function upsert_subject_posts($categories, $post_type, $taxonomy)
+function upsert_subject_posts($categories, $post_type, $taxonomy, $taxonomy_2)
 {
 	foreach ($categories as $category_term => $category_name) {
 		$query = new WP_Query(array(
@@ -66,7 +67,10 @@ function upsert_subject_posts($categories, $post_type, $taxonomy)
 			));
 
 			wp_set_object_terms($post_id, $category_term, $taxonomy);
+			wp_set_object_terms($post_id, 'Featured ' . ucfirst($post_type), $taxonomy_2);
 		}
+
+		wp_reset_postdata();
 	}
 }
 
@@ -124,8 +128,7 @@ add_action('admin_init', function () {
 		'featured-testimonial-subject' => 'Featured Testimonial Subject',
 		'featured-testimonial-tutor-support' => 'Featured Testimonial Tutor Support',
 		'featured-testimonial-career-centre' => 'Featured Testimonial Career Centre',
-		'featured-tutor' => 'Featured Tutor',
-		'featured-course' => 'Featured Course',
+		'featured-tutor' => 'Featured Tutor'
 	];
 
 	$subject_categories = [
@@ -158,7 +161,7 @@ add_action('admin_init', function () {
 		'add-ons' => 'Add Ons',
 		'short-courses' => 'Short Courses',
 		'online-course-bundles' => 'Online Course Bundles',
-		'internal-product' => 'Internal Product',
+		'internal-product' => 'Internal Product'
 	];
 
 	$product_categories = [
@@ -193,14 +196,14 @@ add_action('admin_init', function () {
 		'add-ons' => 'Add Ons',
 		'short-courses' => 'Short Courses',
 		'online-course-bundles' => 'Online Course Bundles',
-		'internal-product' => 'Internal Product',
+		'internal-product' => 'Internal Product'
 	];
 
 	// upsert_categories($post_categories, 'category');
 	// upsert_categories($subject_categories, 'subject');
 	// upsert_categories($product_categories, 'product_cat');
 
-	// upsert_subject_posts($subject_categories, 'subject', 'subject');
+	// upsert_subject_posts($subject_categories, 'subject', 'subject', 'category');
 	// upsert_product_posts($product_categories, 'product', 'product_cat');
 
 	// delete_categories($post_categories, 'category');
