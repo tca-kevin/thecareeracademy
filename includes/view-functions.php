@@ -13,9 +13,9 @@ function set_up_theme()
 	add_theme_support('title-tag');
 	add_theme_support('post-thumbnails');
 
-	register_nav_menus(array('header' => __('Header', 'thecareeracademy'),));
-	register_nav_menus(array('footer' => __('Footer', 'thecareeracademy'),));
-	register_nav_menus(array('side' => __('Side', 'thecareeracademy'),));
+	register_nav_menus(array('header' => __('Header', 'thecareeracademy')));
+	register_nav_menus(array('footer' => __('Footer', 'thecareeracademy')));
+	register_nav_menus(array('side' => __('Side', 'thecareeracademy')));
 }
 
 add_action('after_setup_theme', 'set_up_theme');
