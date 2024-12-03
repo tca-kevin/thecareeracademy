@@ -19,11 +19,11 @@ module.exports = {
       colors: {
         "slate": {
           50: "#FCFDFD",
-          100: "#F7F9FC", // #FCFDFD replaced with TCA
+          100: "#F7F9FC", // #FCFDFD replaced with TCA Light Grey
           200: "#F9FAFB",
           300: "#F2F5F8",
           400: "#EFF3F6",
-          500: "#ECF1F4", // TCA
+          500: "#ECF1F4", // TCA Grey
           600: "#AEC3D0",
           700: "#7196AD",
           800: "#47677B",
@@ -37,7 +37,7 @@ module.exports = {
           200: "#BEBDBC",
           300: "#9D9C9A",
           400: "#7C7B78",
-          500: "#5B5A58",
+          500: "#5B5A58", // TCA Classic Grey
           600: "#494846",
           700: "#363635",
           800: "#242423",
@@ -64,7 +64,7 @@ module.exports = {
           100: "#FFDFD6",
           200: "#FFBFAD",
           300: "#FF8379", // #FFA38A replaced with TCA Hospo 1
-          400: "#FE791A", // #FF8361 TCA Classic Orange
+          400: "#FE791A", // #FF8361 replaced with TCA Classic Orange
           500: "#FF6238", // TCA Orange, TCA Hospo 2, TCA Operations 2
           600: "#FA3600",
           700: "#BD2900",
@@ -149,7 +149,7 @@ module.exports = {
           200: "#ACD8E7",
           300: "#85C5DB",
           400: "#5AB1CE",
-          500: "#379BBB",
+          500: "#379BBB", // TCA Classic Blue
           600: "#2C7B96",
           700: "#225E72",
           800: "#163E4B",
