@@ -65,7 +65,7 @@ function render_menu_items($menu_items, $menu_depth)
 	echo '</ul>';
 }
 
-$menu_items = menu_build_tree(wp_get_nav_menu_items(get_nav_menu_locations()['header-menu']));
+$menu_items = menu_build_tree(wp_get_nav_menu_items(get_nav_menu_locations()['header']));
 ?>
 
 <!doctype html>
