@@ -78,7 +78,7 @@ $menu_items = menu_build_tree(wp_get_nav_menu_items(get_nav_menu_locations()['he
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class(debug_screens()); ?>>
 	<?php wp_body_open(); ?>
 	<header class="shadow-sm">
 		<div class="container mx-auto px-4 flex items-center gap-x-8 h-20">

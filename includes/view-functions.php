@@ -17,6 +17,24 @@ function set_up_theme()
 	register_nav_menus(array('footer' => __('Footer', 'thecareeracademy')));
 }
 
+/**
+ * Add admin colour scheme
+ *
+ * @return void
+ */
+function add_admin_colour_scheme()
+{
+	wp_admin_css_color(
+		'the_career_academy',
+		__('The Career Academy'),
+		get_stylesheet_directory_uri() . '/admin.css',
+		array('#006353', '#fff', '#ff6238', '#ff6238')
+	);
+}
+
+add_action('admin_init', 'add_admin_colour_scheme');
+
+
 add_action('after_setup_theme', 'set_up_theme');
 
 /**
