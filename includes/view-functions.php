@@ -94,7 +94,7 @@ function preload_custom_fonts_in_head_tag()
 	}
 }
 
-add_action('wp_head', 'preload_custom_fonts_in_head_tag', 1);
+// add_action('wp_head', 'preload_custom_fonts_in_head_tag', 1);
 
 /**
  * Manage scripts and styles at the start
@@ -105,7 +105,7 @@ function manage_scripts_and_styles_at_the_start()
 {
 	// wp_enqueue_style('storefront-style', get_template_directory_uri() . '/style.css'); // Storefront Child experiment
 
-	wp_enqueue_style('adobe-fonts', 'https://use.typekit.net/phd3vdh.css', array(), null, 'print');
+	wp_enqueue_style('adobe-fonts', 'https://use.typekit.net/phd3vdh.css', array(), null, 'all');
 
 	if (defined('VITE_DEV') && VITE_DEV) {
 		echo '<script type="module" src="https://catest.test:5173/@vite/client"></script>';
@@ -218,10 +218,6 @@ add_filter('script_loader_tag', 'modify_script_tags', 10, 3);
  */
 function modify_style_tags($html, $handle)
 {
-	if ($handle === 'adobe-fonts') {
-		$html = str_replace("media='print'", "media='all'", $html);
-	}
-
 	if ($handle === 'style') {
 		$html = str_replace("<link rel='stylesheet'", "<link rel='preload' as='style' onload=\"this.onload=null; this.rel='stylesheet'\"", $html);
 	}
