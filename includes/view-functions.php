@@ -200,7 +200,7 @@ function modify_script_tags($tag, $handle, $src)
 	}
 
 	if ($handle === 'dist-assets-js-app') {
-		$tag = '<script type="module" src="' . $src . '" defer></script>';
+		$tag = '<script type="module" src="' . $src . '"></script>';
 		// $tag = '<link rel="preload" href="' . $src . '" as="script" />';
 	}
 
