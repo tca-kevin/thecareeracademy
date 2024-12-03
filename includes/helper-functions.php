@@ -15,6 +15,7 @@ function dd($value)
 
 /**
  * Enable tailwindcss debug screens if in development mode
+ *
  * @return void
  */
 function debug_screens()
