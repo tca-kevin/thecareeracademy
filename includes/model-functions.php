@@ -53,14 +53,15 @@ function upsert_subject_posts($categories)
 			'title'      => $category_name,
 			'post_type'  => 'subject',
 			'post_status' => 'any',
-			'fields'     => 'ids',
+			'fields'     => 'ids'
 		));
 
 		if (!$query->have_posts()) {
 			$post_id = wp_insert_post(array(
 				'post_title' => $category_name,
+				'post_name'     => $category_term,
 				'post_type' => 'subject',
-				'post_status' => 'publish',
+				'post_status' => 'publish'
 			));
 
 			wp_set_object_terms($post_id, $category_term, 'subject');
@@ -89,14 +90,14 @@ function upsert_product_posts($categories)
 					'title'      => $level . ' in ' . $category_name . ' ' . $suffix,
 					'post_type'  => 'product',
 					'post_status' => 'any',
-					'fields'     => 'ids',
+					'fields'     => 'ids'
 				));
 
 				if (!$query->have_posts()) {
 					$post_id = wp_insert_post(array(
 						'post_title'    => $level . ' in ' . $category_name . ' ' . $suffix,
 						'post_type'     => 'product',
-						'post_status' => 'publish',
+						'post_status' => 'publish'
 					));
 
 					wp_set_object_terms($post_id, $category_term, 'product_cat');
@@ -104,6 +105,34 @@ function upsert_product_posts($categories)
 
 				wp_reset_postdata();
 			}
+		}
+	}
+}
+
+/**
+ * Upsert pages
+ *
+ * @param [type] $pages
+ * @return void
+ */
+function upsert_pages($pages)
+{
+	foreach ($pages as $page_slug => $page_name) {
+		$query = new WP_Query(array(
+			'name'      => $page_slug,
+			'post_type'  => 'page',
+			'post_status' => 'any',
+			'numberposts' => 1
+		));
+
+		if (!$query->have_posts()) {
+			$page_id = wp_insert_post(array(
+				'post_title'    => $page_name,
+				'post_name'     => $page_slug,
+				'post_type'     => 'page',
+				'post_content'  => '',
+				'post_status'   => 'publish'
+			));
 		}
 	}
 }
@@ -194,6 +223,24 @@ add_action('admin_init', function () {
 		'internal-product' => 'Internal Product'
 	];
 
+	$pages = [
+		'home' => 'Home',
+		'about-us' => 'About Us',
+		'add-ons' => 'Add Ons',
+		'about-our-tutors' => 'About Our Tutors',
+		'blogs' => 'Blogs',
+		'career-centre' => 'Career Centre',
+		'contact-us' => 'Contact Us',
+		'enrol-now' => 'Enrol Now',
+		'faqs' => 'Frequently Asked Questions',
+		'next-steps' => 'Next Steps',
+		'privacy-policy' => 'Privacy Policy',
+		'reviews-and-student-stories' => 'Reviews & Student Stories',
+		'accredited-courses' => 'Recognitions & Accreditations',
+		'recognition-prior-learning-experience' => 'Recognition of Prior Learning Experience',
+		'terms-conditions' => 'Terms & Conditions'
+	];
+
 	// upsert_categories($post_categories, 'category');
 	// upsert_categories($subject_categories, 'subject');
 	// upsert_categories($product_categories, 'product_cat');
@@ -204,4 +251,6 @@ add_action('admin_init', function () {
 
 	// upsert_subject_posts($subject_categories);
 	// upsert_product_posts($product_categories);
+
+	// upsert_pages($pages);
 });
