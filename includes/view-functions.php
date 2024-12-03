@@ -127,6 +127,8 @@ function manage_scripts_and_styles_at_the_start()
 {
 	// wp_enqueue_style('storefront-style', get_template_directory_uri() . '/style.css'); // Storefront Child experiment
 
+	wp_enqueue_style('adobe-fonts', 'https://use.typekit.net/phd3vdh.css', array(), null);
+
 	if (defined('VITE_DEV') && VITE_DEV) {
 		echo '<script type="module" src="https://catest.test:5173/@vite/client"></script>';
 		wp_enqueue_script('src-js-app', "https://catest.test:5173/src/js/app.js", array(), null);
