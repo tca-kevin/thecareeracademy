@@ -11,9 +11,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'sans': ['"neue-haas-grotesk-display"', ...defaultTheme.fontFamily.sans],
-        'serif': ['"neue-haas-grotesk-display"', ...defaultTheme.fontFamily.serif],
-        'mono': ['"neue-haas-grotesk-display"', ...defaultTheme.fontFamily.mono],
+        'sans': ['"Neue Haas Grotesk Display Pro"', ...defaultTheme.fontFamily.sans],
+        'serif': ['"Neue Haas Grotesk Display Pro"', ...defaultTheme.fontFamily.serif],
+        'mono': ['"Neue Haas Grotesk Display Pro"', ...defaultTheme.fontFamily.mono],
         'druk-wide': ['"Druk Wide"', ...defaultTheme.fontFamily.sans],
       },
       colors: {
