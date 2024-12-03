@@ -94,7 +94,7 @@ function preload_custom_fonts_in_head_tag()
 	}
 }
 
-add_action('wp_head', 'preload_custom_fonts_in_head_tag', 1);
+// add_action('wp_head', 'preload_custom_fonts_in_head_tag', 1);
 
 /**
  * Manage scripts and styles at the start
@@ -200,7 +200,7 @@ function modify_script_tags($tag, $handle, $src)
 	}
 
 	if ($handle === 'dist-assets-js-app') {
-		$tag = '<script type="module" src="' . $src . '"></script>';
+		$tag = '<script type="module" src="' . $src . '" defer></script>';
 		// $tag = '<link rel="preload" href="' . $src . '" as="script" />';
 	}
 
@@ -229,7 +229,7 @@ function modify_style_tags($html, $handle)
 	return $html;
 }
 
-add_filter('style_loader_tag', 'modify_style_tags', 10, 2);
+// add_filter('style_loader_tag', 'modify_style_tags', 10, 2);
 
 /**
  * Shortcode company currency
