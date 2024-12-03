@@ -247,7 +247,7 @@ function modify_style_tags($html, $handle)
 	return $html;
 }
 
-add_filter('style_loader_tag', 'modify_style_tags', 10, 2);
+// add_filter('style_loader_tag', 'modify_style_tags', 10, 2);
 
 /**
  * Shortcode company currency
