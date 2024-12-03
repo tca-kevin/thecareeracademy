@@ -130,11 +130,9 @@ function manage_scripts_and_styles_at_the_start()
 	if (defined('VITE_DEV') && VITE_DEV) {
 		echo '<script type="module" src="https://catest.test:5173/@vite/client"></script>';
 		wp_enqueue_script('src-js-app', "https://catest.test:5173/src/js/app.js", array(), null);
-		wp_enqueue_style('src-sass-style', "https://catest.test:5173/src/sass/app.scss", array(), null);
 		wp_enqueue_style('src-sass-style', "https://catest.test:5173/src/sass/style.scss", array(), null);
 	} else {
 		wp_enqueue_script('dist-assets-js-app', get_stylesheet_directory_uri() . '/dist/assets/js/app.js', array(), wp_get_theme()->get('Version'));
-		wp_enqueue_style('dist-assets-css-app', get_stylesheet_directory_uri() . '/dist/assets/css/app.css', array(), wp_get_theme()->get('Version'));
 		wp_enqueue_style('style', get_stylesheet_uri(), array(), wp_get_theme()->get('Version'));
 	}
 
