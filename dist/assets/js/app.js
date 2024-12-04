@@ -1,1 +1,1 @@
-console.log();
+document.getElementById("mobile-menu");document.getElementById("mobile-menu-container");document.getElementById("mobile-menu-overlay");document.getElementById("mobile-menu-list");document.getElementById("mobile-menu-open");document.getElementById("mobile-menu-close");

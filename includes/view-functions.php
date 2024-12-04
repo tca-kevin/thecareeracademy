@@ -222,9 +222,13 @@ function modify_script_tags($tag, $handle, $src)
 	}
 
 	if ($handle === 'dist-assets-js-app') {
-		$tag = '<script type="module" src="' . $src . '" defer></script>';
+		$tag = '<script type="module" src="' . $src . '"></script>';
 		// $tag = '<link rel="preload" as="script" href="' . $src . '" />';
 	}
+
+	// if ($handle === '') {
+	// 	$tag = '<script type="text/javascript" src="' . $src . '" defer></script>';
+	// }
 
 	return $tag;
 }
