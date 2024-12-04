@@ -113,3 +113,86 @@ Tags:         silence is golden
         letter-spacing: 0.0625rem;
     }
 }
+
+ul.header-menu {
+    @apply h-full flex gap-x-4 list-none p-0 m-0;
+
+    > li {
+        @apply h-full relative;
+
+        > a {
+            @apply h-full flex items-center no-underline transition-all;
+
+            &:hover {
+                > span {
+                    @apply text-green-500;
+                }
+
+                > svg {
+                    @apply fill-orange-500 rotate-180;
+                }
+            }
+
+            > span {
+                @apply font-sans font-semibold text-lg text-black text-nowrap px-4 transition-all;
+            }
+
+            > svg {
+                @apply fill-green-500 size-4 transition-all;
+            }
+        }
+
+        &:hover > ul {
+            @apply flex flex-col;
+        }
+    }
+
+    ul {
+        @apply hidden list-none p-0 m-0 absolute top-full left-0 bg-white shadow-md;
+
+        ul {
+            @apply top-0 left-full;
+
+            ul {
+                @apply top-0 left-full;
+            }
+        }
+
+        li {
+            @apply relative;
+            > a {
+                @apply no-underline flex justify-between items-center gap-x-2 px-4 py-1 transition-all;
+
+                &:hover {
+                    @apply bg-green-500/10;
+
+                    > span {
+                        @apply text-green-500;
+                    }
+
+                    > svg {
+                        @apply fill-orange-500 rotate-180;
+                    }
+                }
+
+                > span {
+                    @apply font-sans font-normal text-base text-black text-nowrap transition-all;
+                }
+
+                > svg {
+                    @apply fill-green-500 size-4 transition-all;
+                }
+            }
+
+            &:hover > ul {
+                @apply flex flex-col opacity-100;
+            }
+        }
+
+        li:last-child {
+            > a {
+                @apply pb-2;
+            }
+        }
+    }
+}

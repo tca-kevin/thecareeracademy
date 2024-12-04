@@ -155,190 +155,71 @@ $menu_items = menu_build_tree(wp_get_nav_menu_items(get_nav_menu_locations()['he
 					</g>
 				</svg>
 			</a>
-			<nav class="relative z-10 h-full hidden lg:flex items-center">
-				<ul class="h-full flex items-center list-none p-0 m-0">
-					<?php $w = 0;
-					foreach ($menu_items as $menu_item_index => $menu_item) { ?>
-						<li class="h-full flex relative" x-data="{ show_menu_item_child_<?php echo $menu_item_index; ?>: false }" x-on:mouseover="show_menu_item_child_<?php echo $menu_item_index; ?> = true" x-on:mouseover.away="show_menu_item_child_<?php echo $menu_item_index; ?> = false">
-							<a href="<?php echo $menu_item['url']; ?>" aria-label="<?php echo $menu_item['title']; ?>" class="flex items-center gap-x-2 font-sans font-semibold text-lg text-black text-nowrap px-4 no-underline">
-								<span x-bind:class="{ 'transition-all text-green-5000': show_menu_item_child_<?php echo $menu_item_index; ?> }"><?php echo $menu_item['title']; ?></span>
+			<nav class="h-full hidden lg:block">
+				<ul class="header-menu">
+					<?php foreach ($menu_items as $menu_item_index => $menu_item) { ?>
+						<li>
+							<a href="<?php echo $menu_item['url']; ?>">
+								<span><?php echo $menu_item['title']; ?></span>
 								<?php if (isset($menu_item['children'])) { ?>
-									<svg x-bind:class="{ 'transition-all rotate-180': show_menu_item_child_<?php echo $menu_item_index; ?> }" class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor">
 										<path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
 									</svg>
 								<?php } ?>
 							</a>
 							<?php if (isset($menu_item['children'])) { ?>
-								<div class="absolute bottom-0 left-0 transform translate-y-full bg-white shadow-md" x-cloak x-show="show_menu_item_child_<?php echo $menu_item_index; ?>" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95">
-									<ul class="flex flex-col list-none p-0 m-0">
-										<?php $x = 0;
-										foreach ($menu_item['children'] as $menu_item_child_index => $menu_item_child) { ?>
-											<li class="h-full flex relative my-px <?php echo ($x == 0 ? 'mt-2 ' : '') . (($x + 1) == count($menu_item['children']) ? 'mb-2 ' : '') . (count($menu_item['children']) == 1 ? 'my-2 ' : ''); ?> border-solid border-x-8 border-y-0 border-transparent" x-data="{ show_menu_item_grand_child_<?php echo $menu_item_child_index; ?>: false }" x-on:mouseover="show_menu_item_grand_child_<?php echo $menu_item_child_index; ?> = true" x-on:mouseover.away="show_menu_item_grand_child_<?php echo $menu_item_child_index; ?> = false">
-												<a href="<?php echo $menu_item_child['url']; ?>" aria-label="<?php echo $menu_item_child['title']; ?>" class="flex justify-between items-center gap-x-2 font-sans font-normal text-base text-black text-nowrap px-4 py-px no-underline w-full" x-bind:class="{ 'bg-green-500 bg-opacity-10 transition-all ': show_menu_item_grand_child_<?php echo $menu_item_child_index; ?> }">
-													<span x-bind:class="{ 'transition-all text-green-5000': show_menu_item_grand_child_<?php echo $menu_item_child_index; ?> }"><?php echo $menu_item_child['title']; ?></span>
-													<?php if (isset($menu_item_child['children'])) { ?>
-														<svg x-bind:class="{ 'transition-all rotate-180': show_menu_item_grand_child_<?php echo $menu_item_child_index; ?> }" class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor">
-															<path fill-rule="evenodd" d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.75.75 0 0 1-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-														</svg>
-													<?php } ?>
-												</a>
+								<ul>
+									<?php foreach ($menu_item['children'] as $menu_item_child_index => $menu_item_child) { ?>
+										<li>
+											<a href="<?php echo $menu_item_child['url']; ?>">
+												<span><?php echo $menu_item_child['title']; ?></span>
 												<?php if (isset($menu_item_child['children'])) { ?>
-													<div class="absolute -top-2 -right-2 transform translate-x-full bg-white shadow-md" x-cloak x-show="show_menu_item_grand_child_<?php echo $menu_item_child_index; ?>" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95">
-														<ul class="flex flex-col list-none p-0 m-0">
-															<?php $y = 0;
-															foreach ($menu_item_child['children'] as $menu_item_grand_child_index => $menu_item_grand_child) { ?>
-																<li class="h-full flex relative my-px <?php echo ($y == 0 ? 'mt-2 ' : '') . (($y + 1) == count($menu_item_child['children']) ? 'mb-2 ' : '') . (count($menu_item_child['children']) == 1 ? 'my-2 ' : ''); ?> border-solid border-x-8 border-y-0 border-transparent" x-data="{ show_menu_item_grand_grand_child_<?php echo $menu_item_grand_child_index; ?>: false }" x-on:mouseover="show_menu_item_grand_grand_child_<?php echo $menu_item_grand_child_index; ?> = true" x-on:mouseover.away="show_menu_item_grand_grand_child_<?php echo $menu_item_grand_child_index; ?> = false">
-																	<a href="<?php echo $menu_item_grand_child['url']; ?>" aria-label="<?php echo $menu_item_grand_child['title']; ?>" class="flex justify-between items-center gap-x-2 font-sans font-normal text-base text-black text-nowrap px-4 py-px no-underline w-full" x-bind:class="{ 'bg-green-500 bg-opacity-10 transition-all ': show_menu_item_grand_grand_child_<?php echo $menu_item_grand_child_index; ?> }">
-																		<span x-bind:class="{ 'transition-all text-green-5000': show_menu_item_grand_grand_child_<?php echo $menu_item_grand_child_index; ?> }"><?php echo $menu_item_grand_child['title']; ?></span>
-																		<?php if (isset($menu_item_grand_child['children'])) { ?>
-																			<svg x-bind:class="{ 'transition-all rotate-180': show_menu_item_grand_grand_child_<?php echo $menu_item_grand_child_index; ?> }" class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor">
-																				<path fill-rule="evenodd" d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.75.75 0 0 1-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-																			</svg>
-																		<?php } ?>
-																	</a>
-																	<?php if (isset($menu_item_grand_child['children'])) { ?>
-																		<div class="absolute -top-2 -right-2 transform translate-x-full bg-white shadow-md" x-cloak x-show="show_menu_item_grand_grand_child_<?php echo $menu_item_grand_child_index; ?>" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95">
-																			<ul class="flex flex-col list-none p-0 m-0">
-																				<?php $z = 0;
-																				foreach ($menu_item_grand_child['children'] as $menu_item_grand_grand_child_index => $menu_item_grand_grand_child) { ?>
-																					<li class="h-full flex relative my-px <?php echo ($z == 0 ? 'mt-2 ' : '') . (($z + 1) == count($menu_item_grand_child['children']) ? 'mb-2 ' : '') . (count($menu_item_grand_child['children']) == 1 ? 'my-2 ' : ''); ?> border-solid border-x-8 border-y-0 border-transparent" x-data="{ show_menu_item_grand_grand_grand_child_<?php echo $menu_item_grand_grand_child_index; ?>: false }" x-on:mouseover="show_menu_item_grand_grand_grand_child_<?php echo $menu_item_grand_grand_child_index; ?> = true" x-on:mouseover.away="show_menu_item_grand_grand_grand_child_<?php echo $menu_item_grand_grand_child_index; ?> = false">
-																						<a href="<?php echo $menu_item_grand_grand_child['url']; ?>" aria-label="<?php echo $menu_item_grand_grand_child['title']; ?>" class="flex justify-between items-center gap-x-2 font-sans font-normal text-base text-black text-nowrap px-4 py-px no-underline w-full" x-bind:class="{ 'bg-green-500 bg-opacity-10 transition-all ': show_menu_item_grand_grand_grand_child_<?php echo $menu_item_grand_grand_child_index; ?> }">
-																							<span x-bind:class="{ 'transition-all text-green-5000': show_menu_item_grand_grand_grand_child_<?php echo $menu_item_grand_grand_child_index; ?> }"><?php echo $menu_item_grand_grand_child['title']; ?></span>
-																							<?php if (isset($menu_item_grand_grand_child['children'])) { ?>
-																								<svg x-bind:class="{ 'transition-all rotate-180': show_menu_item_grand_grand_grand_child_<?php echo $menu_item_grand_grand_child_index; ?> }" class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor">
-																									<path fill-rule="evenodd" d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.75.75 0 0 1-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-																								</svg>
-																							<?php } ?>
-																						</a>
-																					</li>
-																				<?php
-																					$z++;
-																				} ?>
-																			</ul>
-																		</div>
-																	<?php } ?>
-																</li>
-															<?php
-																$y++;
-															} ?>
-														</ul>
-													</div>
+													<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor">
+														<path fill-rule="evenodd" d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.75.75 0 0 1-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+													</svg>
 												<?php } ?>
-											</li>
-										<?php
-											$x++;
-										} ?>
-									</ul>
-								</div>
+											</a>
+											<?php if (isset($menu_item_child['children'])) { ?>
+												<ul>
+													<?php foreach ($menu_item_child['children'] as $menu_item_grand_child_index => $menu_item_grand_child) { ?>
+														<li>
+															<a href="<?php echo $menu_item_grand_child['url']; ?>">
+																<span><?php echo $menu_item_grand_child['title']; ?></span>
+																<?php if (isset($menu_item_grand_child['children'])) { ?>
+																	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor">
+																		<path fill-rule="evenodd" d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.75.75 0 0 1-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+																	</svg>
+																<?php } ?>
+															</a>
+															<?php if (isset($menu_item_grand_child['children'])) { ?>
+																<ul>
+																	<?php foreach ($menu_item_grand_child['children'] as $menu_item_grand_grand_child_index => $menu_item_grand_grand_child) { ?>
+																		<li>
+																			<a href="<?php echo $menu_item_grand_grand_child['url']; ?>">
+																				<span><?php echo $menu_item_grand_grand_child['title']; ?></span>
+																				<?php if (isset($menu_item_grand_grand_child['children'])) { ?>
+																					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor">
+																						<path fill-rule="evenodd" d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.75.75 0 0 1-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+																					</svg>
+																				<?php } ?>
+																			</a>
+																			<?php if (isset($menu_item_grand_grand_child['children'])) { ?>
+																			<?php } ?>
+																		</li>
+																	<?php } ?>
+																</ul>
+															<?php } ?>
+														</li>
+													<?php } ?>
+												</ul>
+											<?php } ?>
+										</li>
+									<?php } ?>
+								</ul>
 							<?php } ?>
 						</li>
-					<?php
-						$w++;
-					} ?>
+					<?php }	?>
 				</ul>
 			</nav>
-			<div x-data="{ show_mobile_menu: false }" class="flex lg:hidden justify-center ml-auto">
-				<span x-on:click="show_mobile_menu = true">
-					<svg class="size-10 rotate-180 fill-black cursor-pointer transition-all hover:fill-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-						<path fill-rule="evenodd" d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75H12a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
-					</svg>
-				</span>
-				<div x-dialog x-model="show_mobile_menu" x-cloak class="fixed inset-0 overflow-hidden z-10">
-					<div x-dialog:overlay x-transition.opacity x-on:click="$dialog.close()" class="fixed inset-0 bg-black/25 cursor-pointer"></div>
-					<div class="fixed inset-y-0 right-0 max-w-xs sm:max-w-sm md:max-w-md w-full max-h-dvh min-h-dvh">
-						<div x-dialog:panel x-transition:enter="transition ease-out duration-300" x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full" class="h-full w-full">
-							<div class="h-full flex flex-col bg-white shadow-lg overflow-y-auto px-8 py-16">
-								<div class="absolute right-0 top-0 mr-4 mt-4">
-									<div x-on:click="$dialog.close()">
-										<svg class="size-10 rotate-180 fill-black cursor-pointer transition-all hover:fill-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-											<path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-										</svg>
-									</div>
-								</div>
-								<div>
-									<?php $w = 0;
-									foreach ($menu_items as $menu_item_index => $menu_item) { ?>
-										<div x-data x-disclosure <?php if (isset($menu_item['children']) && $w == 0) {
-																		echo 'default-open';
-																	} ?>>
-											<div class="flex items-center gap-x-0 sm:gap-x-2" x-data="{ show_menu_item_child_<?php echo $menu_item_index; ?>: false }" x-init="show_menu_item_child_<?php echo $menu_item_index; ?> = <?php if ($w == 0) { echo 'true'; } else { echo 'false'; } ?>" >
-												<svg x-disclosure:button x-cloak x-on:click="show_menu_item_child_<?php echo $menu_item_index; ?> = !show_menu_item_child_<?php echo $menu_item_index; ?>" x-bind:class="$disclosure.isOpen ? 'rotate-90' : 'rotate-0'" class="<?php echo (isset($menu_item['children']) ? 'fill-black' : 'invisible'); ?> size-8 cursor-pointer transition-all hover:fill-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor">
-													<path fill-rule="evenodd" d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.75.75 0 0 1-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-												</svg>
-												<a href="<?php echo $menu_item['url']; ?>" aria-label="<?php echo $menu_item['title']; ?>" x-on:click="show_menu_item_child_<?php echo $menu_item_index; ?> = !show_menu_item_child_<?php echo $menu_item_index; ?>" x-bind:class="{ 'text-green-5000' : show_menu_item_child_<?php echo $menu_item_index; ?>}" class="font-sans font-semibold text-lg text-black px-4 my-2 no-underline focus:outline-none transition-all hover/w:text-green-5000">
-													<?php echo $menu_item['title']; ?>
-												</a>
-											</div>
-											<?php if (isset($menu_item['children'])) { ?>
-												<div x-disclosure:panel x-collapse class="ml-4 sm:ml-6">
-													<?php $x = 0;
-													foreach ($menu_item['children'] as $menu_item_child_index => $menu_item_child) { ?>
-														<div x-data x-disclosure>
-															<div class="flex items-center gap-x-0 sm:gap-x-2" x-data="{ show_menu_item_grand_child_<?php echo $menu_item_child_index; ?>: false }">
-																<svg x-disclosure:button x-cloak x-on:click="show_menu_item_grand_child_<?php echo $menu_item_child_index; ?> = !show_menu_item_grand_child_<?php echo $menu_item_child_index; ?>" x-bind:class="$disclosure.isOpen ? 'rotate-90' : 'rotate-0'" class="<?php echo (isset($menu_item_child['children']) ? 'fill-black cursor-pointer transition-all hover:fill-green-500' : 'invisible'); ?> size-9" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor">
-																	<path fill-rule="evenodd" d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.75.75 0 0 1-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-																</svg>
-																<a href="<?php echo $menu_item_child['url']; ?>" aria-label="<?php echo $menu_item_child['title']; ?>" x-on:click="show_menu_item_grand_child_<?php echo $menu_item_child_index; ?> = !show_menu_item_grand_child_<?php echo $menu_item_child_index; ?>" x-bind:class="{ 'text-green-500 bg-green-500 bg-opacity-10 transition-all' : show_menu_item_grand_child_<?php echo $menu_item_child_index; ?> }" class="font-sans font-normal text-base text-black px-4 py-px my-2 no-underline w-full transition-all hover/x:bg-green-500 hover/x:bg-opacity-10 hover/x:text-green-5000">
-																	<?php echo $menu_item_child['title']; ?>
-																</a>
-															</div>
-															<?php if (isset($menu_item_child['children'])) { ?>
-																<div x-disclosure:panel x-collapse class="ml-4 sm:ml-6">
-																	<?php $y = 0;
-																	foreach ($menu_item_child['children'] as $menu_item_grand_child_index => $menu_item_grand_child) { ?>
-																		<div x-data x-disclosure>
-																			<div class="flex items-center gap-x-0 sm:gap-x-2" x-data="{ show_menu_item_grand_grand_child_<?php echo $menu_item_grand_child_index; ?>: false }">
-																				<svg x-disclosure:button x-cloak x-on:click="show_menu_item_grand_grand_child_<?php echo $menu_item_grand_child_index; ?> = !show_menu_item_grand_grand_child_<?php echo $menu_item_grand_child_index; ?>" x-bind:class="$disclosure.isOpen ? 'rotate-90' : 'rotate-0'" class="<?php echo (isset($menu_item_grand_child['children']) ? 'fill-black cursor-pointer transition-all hover:fill-green-500' : 'invisible'); ?> size-9" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor">
-																					<path fill-rule="evenodd" d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.75.75 0 0 1-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-																				</svg>
-																				<a href="<?php echo $menu_item_grand_child['url']; ?>" aria-label="<?php echo $menu_item_grand_child['title']; ?>" x-on:click="show_menu_item_grand_grand_child_<?php echo $menu_item_grand_child_index; ?> = !show_menu_item_grand_grand_child_<?php echo $menu_item_grand_child_index; ?>" x-bind:class="{ 'text-green-500 bg-green-500 bg-opacity-10 transition-all' : show_menu_item_grand_grand_child_<?php echo $menu_item_grand_child_index; ?> }" class="font-sans font-normal text-base text-black px-4 py-px my-2 no-underline w-full transition-all hover/x:bg-green-500 hover/x:bg-opacity-10 hover/x:text-green-5000">
-																					<?php echo $menu_item_grand_child['title']; ?>
-																				</a>
-																			</div>
-																			<?php if (isset($menu_item_grand_child['children'])) { ?>
-																				<div x-disclosure:panel x-collapse class="ml-4 sm:ml-6">
-																					<?php $z = 0;
-																					foreach ($menu_item_grand_child['children'] as $menu_item_grand_grand_child_index => $menu_item_grand_grand_child) { ?>
-																						<div x-data x-disclosure>
-																							<div class="flex items-center gap-x-0 sm:gap-x-2" x-data="{ show_menu_item_grand_grand_grand_child_<?php echo $menu_item_grand_grand_child_index; ?>: false }">
-																								<svg x-disclosure:button x-cloak x-on:click="show_menu_item_grand_grand_grand_child_<?php echo $menu_item_grand_grand_child_index; ?> = !show_menu_item_grand_grand_grand_child_<?php echo $menu_item_grand_grand_child_index; ?>" x-bind:class="$disclosure.isOpen ? 'rotate-90' : 'rotate-0'" class="<?php echo (isset($menu_item_grand_grand_child['children']) ? 'fill-black cursor-pointer transition-all hover:fill-green-500' : 'invisible'); ?> size-9" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor">
-																									<path fill-rule="evenodd" d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.75.75 0 0 1-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-																								</svg>
-																								<a href="<?php echo $menu_item_grand_grand_child['url']; ?>" aria-label="<?php echo $menu_item_grand_grand_child['title']; ?>" x-on:click="show_menu_item_grand_grand_grand_child_<?php echo $menu_item_grand_grand_child_index; ?> = !show_menu_item_grand_grand_grand_child_<?php echo $menu_item_grand_grand_child_index; ?>" x-bind:class="{ 'text-green-500 bg-green-500 bg-opacity-10 transition-all' : show_menu_item_grand_grand_grand_child_<?php echo $menu_item_grand_grand_child_index; ?> }" class="font-sans font-normal text-base text-black px-4 py-px my-2 no-underline w-full transition-all hover/x:bg-green-500 hover/x:bg-opacity-10 hover/x:text-green-5000">
-																									<?php echo $menu_item_grand_grand_child['title']; ?>
-																								</a>
-																							</div>
-																							<?php if (isset($menu_item_grand_grand_child['children'])) { ?>
-																								<div x-disclosure:panel x-collapse class="ml-4 sm:ml-6">
-																								</div>
-																							<?php } ?>
-																						</div>
-																					<?php
-																						$z++;
-																					} ?>
-																				</div>
-																			<?php } ?>
-																		</div>
-																	<?php
-																		$y++;
-																	} ?>
-																</div>
-															<?php } ?>
-														</div>
-													<?php
-														$x++;
-													} ?>
-												</div>
-											<?php } ?>
-										</div>
-									<?php
-										$w++;
-									} ?>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 	</header>
