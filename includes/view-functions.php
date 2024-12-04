@@ -218,14 +218,18 @@ add_filter('script_loader_tag', 'modify_script_tags', 10, 3);
  */
 function modify_style_tags($html, $handle)
 {
+	if ($handle === 'adobe-fonts') {
+		// $html = str_replace("<link rel='stylesheet'", "<link rel='preload' as='style' onload=\"this.onload=null; this.rel='stylesheet';\"", $html);
+	}
+
 	if ($handle === 'style') {
-		$html = str_replace("<link rel='stylesheet'", "<link rel='preload' as='style' onload=\"this.onload=null; alert('loading'); this.rel='stylesheet'\"", $html);
+		$html = str_replace("<link rel='stylesheet'", "<link rel='preload' as='style' onload=\"this.onload=null; this.rel='stylesheet';\"", $html);
 	}
 
 	return $html;
 }
 
-// add_filter('style_loader_tag', 'modify_style_tags', 10, 2);
+add_filter('style_loader_tag', 'modify_style_tags', 10, 2);
 
 /**
  * Shortcode company currency

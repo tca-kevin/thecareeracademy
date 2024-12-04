@@ -55,7 +55,7 @@ function render_menu_items($menu_items, $menu_depth)
 
 	foreach ($menu_items as $menu_item) {
 		echo '<li>';
-		echo '<a href="' . htmlspecialchars($menu_item['url']) . '">' . htmlspecialchars($menu_item['title']) . '</a>';
+		echo '<a href="' . $menu_item['url'] . '" aria-label="' . $menu_item['title'] .'">' . $menu_item['title'] . '</a>';
 		if (isset($menu_item['children'])) {
 			render_menu_items($menu_item['children'], $menu_depth);
 		}
@@ -82,7 +82,7 @@ $menu_items = menu_build_tree(wp_get_nav_menu_items(get_nav_menu_locations()['he
 	<?php wp_body_open(); ?>
 	<header class="shadow-md">
 		<div class="container mx-auto px-4 flex items-center gap-x-8 h-20">
-			<a href="<?php echo home_url(); ?>">
+			<a href="<?php echo home_url(); ?>" aria-label="<?php echo __('Company Logo', 'thecareeracademy'); ?>">
 				<svg class="h-16 transition-all hover:fill-green-500" version="1.1" id="The_Career_Academy" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
 					y="0px" viewBox="0 0 130.4 48" style="enable-background:new 0 0 130.4 48;" xml:space="preserve">
 					<g>
@@ -160,7 +160,7 @@ $menu_items = menu_build_tree(wp_get_nav_menu_items(get_nav_menu_locations()['he
 					<?php $w = 0;
 					foreach ($menu_items as $menu_item_index => $menu_item) { ?>
 						<li class="h-full flex relative group" x-data="{ show_menu_item_child_<?php echo $menu_item_index; ?>: false }" x-on:mouseover="show_menu_item_child_<?php echo $menu_item_index; ?> = true" x-on:mouseover.away="show_menu_item_child_<?php echo $menu_item_index; ?> = false">
-							<a href="<?php echo $menu_item['url']; ?>" class="flex items-center gap-x-2 font-sans font-semibold text-lg text-black text-nowrap px-4 no-underline">
+							<a href="<?php echo $menu_item['url']; ?>" aria-label="<?php echo $menu_item['title']; ?>" class="flex items-center gap-x-2 font-sans font-semibold text-lg text-black text-nowrap px-4 no-underline">
 								<span x-bind:class="{ 'transition-all text-green-500': show_menu_item_child_<?php echo $menu_item_index; ?> }"><?php echo $menu_item['title']; ?></span>
 								<?php if (isset($menu_item['children'])) { ?>
 									<svg x-bind:class="{ 'transition-all rotate-180': show_menu_item_child_<?php echo $menu_item_index; ?> }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
@@ -174,7 +174,7 @@ $menu_items = menu_build_tree(wp_get_nav_menu_items(get_nav_menu_locations()['he
 										<?php $x = 0;
 										foreach ($menu_item['children'] as $menu_item_child_index => $menu_item_child) { ?>
 											<li class="h-full flex relative my-0 <?php echo ($x == 0 ? 'mt-2 ' : '') . (($x + 1) == count($menu_item['children']) ? 'mb-2 ' : '') . (count($menu_item['children']) == 1 ? 'my-2 ' : ''); ?> border-solid border-x-8 border-y-0 border-transparent" x-data="{ show_menu_item_grand_child_<?php echo $menu_item_child_index; ?>: false }" x-on:mouseover="show_menu_item_grand_child_<?php echo $menu_item_child_index; ?> = true" x-on:mouseover.away="show_menu_item_grand_child_<?php echo $menu_item_child_index; ?> = false">
-												<a href="<?php echo $menu_item_child['url']; ?>" class="flex justify-between items-center gap-x-2 font-sans font-normal text-base text-black text-nowrap px-4 py-px no-underline w-full" x-bind:class="{ 'transition-all bg-green-500 bg-opacity-10': show_menu_item_grand_child_<?php echo $menu_item_child_index; ?> }">
+												<a href="<?php echo $menu_item_child['url']; ?>" aria-label="<?php echo $menu_item_child['title']; ?>" class="flex justify-between items-center gap-x-2 font-sans font-normal text-base text-black text-nowrap px-4 py-px no-underline w-full" x-bind:class="{ 'transition-all bg-green-500 bg-opacity-10': show_menu_item_grand_child_<?php echo $menu_item_child_index; ?> }">
 													<span x-bind:class="{ 'transition-all text-green-500': show_menu_item_grand_child_<?php echo $menu_item_child_index; ?> }"><?php echo $menu_item_child['title']; ?></span>
 													<?php if (isset($menu_item_child['children'])) { ?>
 														<svg x-bind:class="{ 'transition-all rotate-180': show_menu_item_grand_child_<?php echo $menu_item_child_index; ?> }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
@@ -188,7 +188,7 @@ $menu_items = menu_build_tree(wp_get_nav_menu_items(get_nav_menu_locations()['he
 															<?php $y = 0;
 															foreach ($menu_item_child['children'] as $menu_item_grand_child_index => $menu_item_grand_child) { ?>
 																<li class="h-full flex relative my-0 <?php echo ($y == 0 ? 'mt-2 ' : '') . (($y + 1) == count($menu_item_child['children']) ? 'mb-2 ' : '') . (count($menu_item_child['children']) == 1 ? 'my-2 ' : ''); ?> border-solid border-x-8 border-y-0 border-transparent" x-data="{ show_menu_item_grand_grand_child_<?php echo $menu_item_grand_child_index; ?>: false }" x-on:mouseover="show_menu_item_grand_grand_child_<?php echo $menu_item_grand_child_index; ?> = true" x-on:mouseover.away="show_menu_item_grand_grand_child_<?php echo $menu_item_grand_child_index; ?> = false">
-																	<a href="<?php echo $menu_item_grand_child['url']; ?>" class="flex justify-between items-center gap-x-2 font-sans font-normal text-base text-black text-nowrap px-4 py-px no-underline w-full" x-bind:class="{ 'transition-all bg-green-500 bg-opacity-10': show_menu_item_grand_grand_child_<?php echo $menu_item_grand_child_index; ?> }">
+																	<a href="<?php echo $menu_item_grand_child['url']; ?>" aria-label="<?php echo $menu_item_grand_child['title']; ?>" class="flex justify-between items-center gap-x-2 font-sans font-normal text-base text-black text-nowrap px-4 py-px no-underline w-full" x-bind:class="{ 'transition-all bg-green-500 bg-opacity-10': show_menu_item_grand_grand_child_<?php echo $menu_item_grand_child_index; ?> }">
 																		<span x-bind:class="{ 'transition-all text-green-500': show_menu_item_grand_grand_child_<?php echo $menu_item_grand_child_index; ?> }"><?php echo $menu_item_grand_child['title']; ?></span>
 																		<?php if (isset($menu_item_grand_child['children'])) { ?>
 																			<svg x-bind:class="{ 'transition-all rotate-180': show_menu_item_grand_grand_child_<?php echo $menu_item_grand_child_index; ?> }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
@@ -202,7 +202,7 @@ $menu_items = menu_build_tree(wp_get_nav_menu_items(get_nav_menu_locations()['he
 																				<?php $z = 0;
 																				foreach ($menu_item_grand_child['children'] as $menu_item_grand_grand_child_index => $menu_item_grand_grand_child) { ?>
 																					<li class="h-full flex relative my-0 <?php echo ($z == 0 ? 'mt-2 ' : '') . (($z + 1) == count($menu_item_grand_child['children']) ? 'mb-2 ' : '') . (count($menu_item_grand_child['children']) == 1 ? 'my-2 ' : ''); ?> border-solid border-x-8 border-y-0 border-transparent" x-data="{ show_menu_item_grand_grand_grand_child_<?php echo $menu_item_grand_grand_child_index; ?>: false }" x-on:mouseover="show_menu_item_grand_grand_grand_child_<?php echo $menu_item_grand_grand_child_index; ?> = true" x-on:mouseover.away="show_menu_item_grand_grand_grand_child_<?php echo $menu_item_grand_grand_child_index; ?> = false">
-																						<a href="<?php echo $menu_item_grand_grand_child['url']; ?>" class="flex justify-between items-center gap-x-2 font-sans font-normal text-base text-black text-nowrap px-4 py-px no-underline w-full" x-bind:class="{ 'transition-all bg-green-500 bg-opacity-10': show_menu_item_grand_grand_grand_child_<?php echo $menu_item_grand_grand_child_index; ?> }">
+																						<a href="<?php echo $menu_item_grand_grand_child['url']; ?>" aria-label="<?php echo $menu_item_grand_grand_child['title']; ?>" class="flex justify-between items-center gap-x-2 font-sans font-normal text-base text-black text-nowrap px-4 py-px no-underline w-full" x-bind:class="{ 'transition-all bg-green-500 bg-opacity-10': show_menu_item_grand_grand_grand_child_<?php echo $menu_item_grand_grand_child_index; ?> }">
 																							<span x-bind:class="{ 'transition-all text-green-500': show_menu_item_grand_grand_grand_child_<?php echo $menu_item_grand_grand_child_index; ?> }"><?php echo $menu_item_grand_grand_child['title']; ?></span>
 																							<?php if (isset($menu_item_grand_grand_child['children'])) { ?>
 																								<svg x-bind:class="{ 'transition-all rotate-180': show_menu_item_grand_grand_grand_child_<?php echo $menu_item_grand_grand_child_index; ?> }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
