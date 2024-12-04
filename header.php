@@ -155,7 +155,7 @@ $menu_items = menu_build_tree(wp_get_nav_menu_items(get_nav_menu_locations()['he
 					</g>
 				</svg>
 			</a>
-			<nav class="relative z-10 h-full lg:flex hidden items-center">
+			<nav class="relative z-10 h-full hidden lg:flex items-center">
 				<ul class="h-full flex items-center list-none p-0 m-0">
 					<?php $w = 0;
 					foreach ($menu_items as $menu_item_index => $menu_item) { ?>
@@ -237,7 +237,7 @@ $menu_items = menu_build_tree(wp_get_nav_menu_items(get_nav_menu_locations()['he
 					} ?>
 				</ul>
 			</nav>
-			<div x-data="{ show_mobile_menu: false }" class="flex justify-center ml-auto">
+			<div x-data="{ show_mobile_menu: false }" class="flex lg:hidden justify-center ml-auto">
 				<span x-on:click="show_mobile_menu = true">
 					<svg class="size-10 rotate-180 fill-black cursor-pointer transition-all hover:fill-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
 						<path fill-rule="evenodd" d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75H12a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
