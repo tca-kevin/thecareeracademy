@@ -121,7 +121,7 @@ ul.header-menu {
         @apply h-full relative;
 
         > a {
-            @apply h-full flex items-center no-underline transition-all;
+            @apply h-full flex items-center no-underline;
 
             &:hover {
                 > span {
