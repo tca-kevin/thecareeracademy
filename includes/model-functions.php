@@ -165,7 +165,7 @@ add_action('admin_init', function () {
 		'creative' => 'Creative Skills',
 		'business' => 'Business',
 		'childcare' => 'Childcare',
-		'counselling' => 'Couselling',
+		'counselling' => 'Counselling',
 		'cryptocurrency' => 'Cryptocurrency',
 		'excel' => 'Excel',
 		'fitness' => 'Fitness',
