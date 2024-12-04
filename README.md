@@ -1,1 +1,1 @@
-# The Career Academy 20241204
+# The Career Academy
