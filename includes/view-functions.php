@@ -86,7 +86,29 @@ function preload_custom_fonts_in_head_tag()
 		'/wp-content/themes/thecareeracademy/dist/assets/fonts/DrukWide-Heavy.woff2',
 		'/wp-content/themes/thecareeracademy/dist/assets/fonts/DrukWide-MediumItalic.woff2',
 		'/wp-content/themes/thecareeracademy/dist/assets/fonts/DrukWide-BoldItalic.woff2',
-		'/wp-content/themes/thecareeracademy/dist/assets/fonts/DrukWide-HeavyItalic.woff2'
+		'/wp-content/themes/thecareeracademy/dist/assets/fonts/DrukWide-HeavyItalic.woff2',
+		'/wp-content/themes/thecareeracademy/dist/assets/fonts/NHaasGroteskDSPro-15UltTh.woff2',
+		'/wp-content/themes/thecareeracademy/dist/assets/fonts/NHaasGroteskDSPro-16UltThIt.woff2',
+		'/wp-content/themes/thecareeracademy/dist/assets/fonts/NHaasGroteskDSPro-25Th.woff2',
+		'/wp-content/themes/thecareeracademy/dist/assets/fonts/NHaasGroteskDSPro-26ThIt.woff2',
+		'/wp-content/themes/thecareeracademy/dist/assets/fonts/NHaasGroteskDSPro-35XLt.woff2',
+		'/wp-content/themes/thecareeracademy/dist/assets/fonts/NHaasGroteskDSPro-36XLtIt.woff2',
+		'/wp-content/themes/thecareeracademy/dist/assets/fonts/NHaasGroteskDSPro-45Lt.woff2',
+		'/wp-content/themes/thecareeracademy/dist/assets/fonts/NHaasGroteskDSPro-46LtIt.woff2',
+		'/wp-content/themes/thecareeracademy/dist/assets/fonts/NHaasGroteskDSPro-55Rg.woff2',
+		'/wp-content/themes/thecareeracademy/dist/assets/fonts/NHaasGroteskDSPro-56It.woff2',
+		'/wp-content/themes/thecareeracademy/dist/assets/fonts/NHaasGroteskDSPro-65Md.woff2',
+		'/wp-content/themes/thecareeracademy/dist/assets/fonts/NHaasGroteskDSPro-66MdIt.woff2',
+		'/wp-content/themes/thecareeracademy/dist/assets/fonts/NHaasGroteskDSPro-75Bd.woff2',
+		'/wp-content/themes/thecareeracademy/dist/assets/fonts/NHaasGroteskDSPro-76BdIt.woff2',
+		'/wp-content/themes/thecareeracademy/dist/assets/fonts/NHaasGroteskDSPro-95Blk.woff2',
+		'/wp-content/themes/thecareeracademy/dist/assets/fonts/NHaasGroteskDSPro-96BlkIt.woff2',
+		'/wp-content/themes/thecareeracademy/dist/assets/fonts/NHaasGroteskTXPro-55Rg.woff2',
+		'/wp-content/themes/thecareeracademy/dist/assets/fonts/NHaasGroteskTXPro-56It.woff2',
+		'/wp-content/themes/thecareeracademy/dist/assets/fonts/NHaasGroteskTXPro-65Md.woff2',
+		'/wp-content/themes/thecareeracademy/dist/assets/fonts/NHaasGroteskTXPro-66MdIt.woff2',
+		'/wp-content/themes/thecareeracademy/dist/assets/fonts/NHaasGroteskTXPro-75Bd.woff2',
+		'/wp-content/themes/thecareeracademy/dist/assets/fonts/NHaasGroteskTXPro-76BdIt.woff2',
 	];
 
 	foreach ($fonts as $font) {
@@ -105,7 +127,7 @@ function manage_scripts_and_styles_at_the_start()
 {
 	// wp_enqueue_style('storefront-style', get_template_directory_uri() . '/style.css'); // Storefront Child experiment
 
-	wp_enqueue_style('adobe-fonts', 'https://use.typekit.net/phd3vdh.css', array(), null);
+	// wp_enqueue_style('adobe-fonts', 'https://use.typekit.net/phd3vdh.css', array(), null);
 
 	if (defined('VITE_DEV') && VITE_DEV) {
 		echo '<script type="module" src="https://catest.test:5173/@vite/client"></script>';
