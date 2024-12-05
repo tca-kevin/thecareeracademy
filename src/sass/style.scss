@@ -332,7 +332,6 @@ Tags:         silence is golden
     font-display: swap;
 }
 
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -380,13 +379,13 @@ Tags:         silence is golden
 }
 
 ul.header-menu {
-    @apply h-full flex gap-x-4 list-none p-0 m-0;
+    @apply h-full flex gap-x-8 list-none p-0 m-0;
 
     > li {
         @apply h-full relative;
 
         > a {
-            @apply h-full flex items-center no-underline;
+            @apply h-full flex items-center gap-x-2 no-underline;
 
             &:hover {
                 > span {
@@ -399,7 +398,7 @@ ul.header-menu {
             }
 
             > span {
-                @apply font-sans font-semibold text-lg text-black text-nowrap px-4 transition-all;
+                @apply font-sans font-semibold text-lg text-black text-nowrap transition-all;
             }
 
             > svg {
@@ -425,6 +424,7 @@ ul.header-menu {
 
         li {
             @apply relative;
+
             > a {
                 @apply no-underline flex justify-between items-center gap-x-2 px-4 py-1 transition-all;
 
@@ -452,11 +452,129 @@ ul.header-menu {
             &:hover > ul {
                 @apply flex flex-col opacity-100;
             }
+
+            &:last-child {
+                > a {
+                    @apply pb-2;
+                }
+            }
+        }
+    }
+}
+
+svg.mobile-menu-open-button {
+    @apply ml-auto block lg:hidden size-10 rotate-180 fill-black cursor-pointer transition-all hover:fill-green-500;
+}
+
+nav.mobile-menu {
+    @apply fixed z-10 top-0 right-0 max-w-xs sm:max-w-sm md:max-w-md w-0 h-full bg-white shadow-md overflow-x-hidden transition-all;
+
+    svg.mobile-menu-close-button {
+        @apply absolute top-4 right-4 size-10 rotate-180 cursor-pointer transition-all hover:fill-green-500;
+    }
+
+    ul.mobile-menu-container {
+        @apply flex flex-col gap-y-4 list-none px-4 md:px-8 py-6 md:py-8 m-0;
+
+        > li {
+            > div {
+                @apply flex items-center gap-x-2 mt-0;
+
+                &.single {
+                    @apply ml-6;
+                }
+
+                > svg {
+                    @apply size-8 cursor-pointer transition-all;
+
+                    &:hover {
+                        @apply fill-orange-500;
+                    }
+
+                    &.active {
+                        @apply fill-orange-500 rotate-90;
+                    }
+                }
+
+                > a {
+                    @apply no-underline px-0 py-0 transition-all;
+
+                    &:hover {
+                        > span {
+                            @apply text-green-500;
+                        }
+                    }
+
+                    &.active {
+                        @apply bg-white;
+
+                        > span {
+                            @apply text-green-500;
+                        }
+                    }
+
+                    > span {
+                        @apply font-sans font-semibold text-lg text-black;
+                    }
+                }
+            }
         }
 
-        li:last-child {
-            > a {
-                @apply pb-2;
+        ul {
+            @apply hidden overflow-hidden list-none p-0 m-0 ml-4;
+
+            ul {
+                @apply list-none p-0 m-0 ml-4;
+
+                ul {
+                    @apply list-none p-0 m-0 ml-8;
+                }
+            }
+
+            li {
+                > div {
+                    @apply flex items-center gap-x-2 mt-2;
+
+                    &.single {
+                        @apply ml-6;
+                    }
+
+                    > svg {
+                        @apply size-8 cursor-pointer transition-all;
+
+                        &:hover {
+                            @apply fill-orange-500;
+                        }
+
+                        &.active {
+                            @apply fill-orange-500 rotate-90;
+                        }
+                    }
+
+                    > a {
+                        @apply no-underline px-4 py-1 transition-all;
+
+                        &:hover {
+                            @apply bg-green-500/10;
+
+                            > span {
+                                @apply text-green-500;
+                            }
+                        }
+
+                        &.active {
+                            @apply bg-green-500/10;
+
+                            > span {
+                                @apply text-green-500;
+                            }
+                        }
+
+                        > span {
+                            @apply font-sans font-normal text-base text-black;
+                        }
+                    }
+                }
             }
         }
     }

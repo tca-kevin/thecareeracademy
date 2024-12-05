@@ -159,7 +159,7 @@ $menu_items = menu_build_tree(wp_get_nav_menu_items(get_nav_menu_locations()['he
 				<ul class="header-menu">
 					<?php foreach ($menu_items as $menu_item_index => $menu_item) { ?>
 						<li>
-							<a href="<?php echo $menu_item['url']; ?>">
+							<a href="<?php echo $menu_item['url']; ?>" aria-label="<?php echo $menu_item['title']; ?>">
 								<span><?php echo $menu_item['title']; ?></span>
 								<?php if (isset($menu_item['children'])) { ?>
 									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor">
@@ -171,7 +171,7 @@ $menu_items = menu_build_tree(wp_get_nav_menu_items(get_nav_menu_locations()['he
 								<ul>
 									<?php foreach ($menu_item['children'] as $menu_item_child_index => $menu_item_child) { ?>
 										<li>
-											<a href="<?php echo $menu_item_child['url']; ?>">
+											<a href="<?php echo $menu_item_child['url']; ?>" aria-label="<?php echo $menu_item_child['title']; ?>">
 												<span><?php echo $menu_item_child['title']; ?></span>
 												<?php if (isset($menu_item_child['children'])) { ?>
 													<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor">
@@ -183,7 +183,7 @@ $menu_items = menu_build_tree(wp_get_nav_menu_items(get_nav_menu_locations()['he
 												<ul>
 													<?php foreach ($menu_item_child['children'] as $menu_item_grand_child_index => $menu_item_grand_child) { ?>
 														<li>
-															<a href="<?php echo $menu_item_grand_child['url']; ?>">
+															<a href="<?php echo $menu_item_grand_child['url']; ?>" aria-label="<?php echo $menu_item_grand_child['title']; ?>">
 																<span><?php echo $menu_item_grand_child['title']; ?></span>
 																<?php if (isset($menu_item_grand_child['children'])) { ?>
 																	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor">
@@ -195,7 +195,7 @@ $menu_items = menu_build_tree(wp_get_nav_menu_items(get_nav_menu_locations()['he
 																<ul>
 																	<?php foreach ($menu_item_grand_child['children'] as $menu_item_grand_grand_child_index => $menu_item_grand_grand_child) { ?>
 																		<li>
-																			<a href="<?php echo $menu_item_grand_grand_child['url']; ?>">
+																			<a href="<?php echo $menu_item_grand_grand_child['url']; ?>" aria-label="<?php echo $menu_item_grand_grand_child['title']; ?>">
 																				<span><?php echo $menu_item_grand_grand_child['title']; ?></span>
 																				<?php if (isset($menu_item_grand_grand_child['children'])) { ?>
 																					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor">
@@ -221,27 +221,86 @@ $menu_items = menu_build_tree(wp_get_nav_menu_items(get_nav_menu_locations()['he
 					<?php }	?>
 				</ul>
 			</nav>
-			<svg id="mobile-menu-open" class="ml-auto block lg:hidden size-10 rotate-180 fill-black cursor-pointer transition-all hover:fill-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+			<svg onclick="openMobileMenu()" class="mobile-menu-open-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
 				<path fill-rule="evenodd" d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75H12a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
 			</svg>
-		</div>
-		<div id="mobile-menu" class="flex lg:hidden justify-center">
-			<div id="mobile-menu-container" class="hidden fixed inset-0 overflow-hidden z-10">
-				<div id="mobile-menu-overlay" class="hidden fixed inset-0 bg-black/25 cursor-pointer"></div>
-				<div id="mobile-menu-list" class="hidden fixed inset-y-0 right-0 max-w-xs sm:max-w-sm md:max-w-md w-full max-h-dvh min-h-dvh">
-					<div class="h-full w-full">
-						<div class="h-full flex flex-col bg-white shadow-lg overflow-y-auto px-8 py-16">
-							<div class="absolute right-0 top-0 mr-4 mt-4">
-								<svg id="mobile-menu-close" class="size-10 rotate-180 fill-black cursor-pointer transition-all hover:fill-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-									<path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-								</svg>
+			<nav id="mobile-menu" class="mobile-menu">
+				<svg onclick="closeMobileMenu()" class="mobile-menu-close-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+					<path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+				</svg>
+				<ul class="mobile-menu-container">
+					<?php foreach ($menu_items as $menu_item_index => $menu_item) { ?>
+						<li>
+							<div class="<?php echo (!isset($menu_item['children']) ? 'single' : ''); ?>">
+								<?php if (isset($menu_item['children'])) { ?>
+									<svg class="mobile-menu-accordion-toggle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor">
+										<path fill-rule="evenodd" d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.75.75 0 0 1-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+									</svg>
+								<?php } ?>
+								<a href="<?php echo $menu_item['url']; ?>" aria-label="<?php echo $menu_item['title']; ?>" class="mobile-menu-accordion">
+									<span><?php echo $menu_item['title']; ?></span>
+								</a>
 							</div>
-							<div>
-								<div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, sint?</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+							<?php if (isset($menu_item['children'])) { ?>
+								<ul class="mobile-menu-accordion-panel">
+									<?php foreach ($menu_item['children'] as $menu_item_child_index => $menu_item_child) { ?>
+										<li>
+											<div class="<?php echo (!isset($menu_item_child['children']) ? 'single' : ''); ?>">
+												<?php if (isset($menu_item_child['children'])) { ?>
+													<svg class="mobile-menu-accordion-toggle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor">
+														<path fill-rule="evenodd" d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.75.75 0 0 1-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+													</svg>
+												<?php } ?>
+												<a href="<?php echo $menu_item_child['url']; ?>" aria-label="<?php echo $menu_item_child['title']; ?>" class="mobile-menu-accordion">
+													<span><?php echo $menu_item_child['title']; ?></span>
+												</a>
+											</div>
+											<?php if (isset($menu_item_child['children'])) { ?>
+												<ul class="mobile-menu-accordion-panel">
+													<?php foreach ($menu_item_child['children'] as $menu_item_grand_child_index => $menu_item_grand_child) { ?>
+														<li>
+															<div class="<?php echo (!isset($menu_item_grand_child['children']) ? 'single' : ''); ?>">
+																<?php if (isset($menu_item_grand_child['children'])) { ?>
+																	<svg class="mobile-menu-accordion-toggle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor">
+																		<path fill-rule="evenodd" d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.75.75 0 0 1-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+																	</svg>
+																<?php } ?>
+																<a href="<?php echo $menu_item_grand_child['url']; ?>" aria-label="<?php echo $menu_item_grand_child['title']; ?>" class="mobile-menu-accordion">
+																	<span><?php echo $menu_item_grand_child['title']; ?></span>
+																</a>
+															</div>
+															<?php if (isset($menu_item_grand_child['children'])) { ?>
+																<ul class="mobile-menu-accordion-panel">
+																	<?php foreach ($menu_item_grand_child['children'] as $menu_item_grand_grand_child_index => $menu_item_grand_grand_child) { ?>
+																		<li>
+																			<div class="<?php echo (!isset($menu_item_grand_grand_child['children']) ? 'single' : ''); ?>">
+																				<?php if (isset($menu_item_grand_grand_child['children'])) { ?>
+																					<svg class="mobile-menu-accordion-toggle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor">
+																						<path fill-rule="evenodd" d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.75.75 0 0 1-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+																					</svg>
+																				<?php } ?>
+																				<a href="<?php echo $menu_item_grand_grand_child['url']; ?>" aria-label="<?php echo $menu_item_grand_grand_child['title']; ?>" class="mobile-menu-accordion">
+																					<span><?php echo $menu_item_grand_grand_child['title']; ?></span>
+																				</a>
+																				<?php if (isset($menu_item_grand_grand_child['children'])) { ?>
+																				<?php } ?>
+																			</div>
+																		</li>
+																	<?php }	?>
+																</ul>
+															<?php }	?>
+														</li>
+													<?php }	?>
+												</ul>
+											<?php }	?>
+										</li>
+									<?php }	?>
+								</ul>
+							<?php }	?>
+						</li>
+					<?php }	?>
+				</ul>
+			</nav>
 		</div>
 	</header>
+	

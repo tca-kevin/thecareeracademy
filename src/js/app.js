@@ -1,6 +1,32 @@
-const mobileMenu = document.getElementById('mobile-menu');
-const mobileMenuContainer = document.getElementById('mobile-menu-container');
-const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-const mobileMenuList = document.getElementById('mobile-menu-list');
-const mobileMenuOpen = document.getElementById('mobile-menu-open');
-const mobileMenuClose = document.getElementById('mobile-menu-close');
+document.addEventListener("DOMContentLoaded", function () {
+	function openMobileMenu() {
+		document.getElementById("mobile-menu").style.width = "100%";
+	}
+
+	function closeMobileMenu() {
+		document.getElementById("mobile-menu").style.width = "0";
+	}
+
+	window.openMobileMenu = openMobileMenu;
+
+	window.closeMobileMenu = closeMobileMenu;
+
+	let mobileMenuAccordionToggle = document.getElementsByClassName("mobile-menu-accordion-toggle");
+
+	for (let i = 0; i < mobileMenuAccordionToggle.length; i++) {
+		mobileMenuAccordionToggle[i].addEventListener("click", function () {
+			let accordion = mobileMenuAccordionToggle[i].parentElement.querySelector('.mobile-menu-accordion');
+			let mobileMenuAccordionPanel = mobileMenuAccordionToggle[i].parentElement.nextElementSibling;
+
+			accordion.classList.toggle("active");
+
+			mobileMenuAccordionToggle[i].classList.toggle("active");
+
+			if (mobileMenuAccordionPanel && mobileMenuAccordionPanel.style.display === "block") {
+				mobileMenuAccordionPanel.style.display = "none";
+			} else if (mobileMenuAccordionPanel) {
+				mobileMenuAccordionPanel.style.display = "block";
+			}
+		});
+	}
+});

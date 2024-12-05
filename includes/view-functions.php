@@ -130,7 +130,8 @@ function manage_scripts_and_styles_at_the_start()
 	// wp_enqueue_style('adobe-fonts', 'https://use.typekit.net/phd3vdh.css', array(), null);
 
 	if (defined('VITE_DEV') && VITE_DEV) {
-		echo '<script type="module" src="https://catest.test:5173/@vite/client"></script>';
+		wp_enqueue_script('src-vite-dev', "https://catest.test:5173/@vite/client", array(), null);
+
 		wp_enqueue_script('src-js-app', "https://catest.test:5173/src/js/app.js", array(), null);
 		wp_enqueue_style('src-sass-style', "https://catest.test:5173/src/sass/style.scss", array(), null);
 	} else {
@@ -217,7 +218,7 @@ add_filter('body_class', 'manage_scripts_and_styles_in_body_tag');
  */
 function modify_script_tags($tag, $handle, $src)
 {
-	if ($handle === 'src-js-app') {
+	if (($handle === 'src-vite-dev') || ($handle === 'src-js-app')) {
 		$tag = '<script type="module" src="' . $src . '"></script>';
 	}
 
