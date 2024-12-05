@@ -69,7 +69,7 @@ $menu_items = menu_build_tree(wp_get_nav_menu_items(get_nav_menu_locations()['he
 ?>
 
 <!doctype html>
-<html <?php language_attributes(); ?>>
+<html <?php language_attributes(); ?> class="h-full">
 
 <head>
 	<meta charset="<?php bloginfo('charset'); ?>">
@@ -78,10 +78,10 @@ $menu_items = menu_build_tree(wp_get_nav_menu_items(get_nav_menu_locations()['he
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class(debug_screens()); ?>>
+<body <?php body_class(debug_screens() . ' h-full'); ?>>
 	<?php wp_body_open(); ?>
 	<header class="shadow-md">
-		<div class="container mx-auto px-4 flex justify-start items-center gap-x-8 h-20">
+		<div class="relative container mx-auto px-4 flex justify-start items-center gap-x-8 h-20">
 			<a href="<?php echo home_url(); ?>" aria-label="<?php echo __('Company Logo', 'thecareeracademy'); ?>">
 				<svg class="h-16 transition-all hover:fill-green-500" version="1.1" id="The_Career_Academy" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
 					y="0px" viewBox="0 0 130.4 48" style="enable-background:new 0 0 130.4 48;" xml:space="preserve">
@@ -229,21 +229,25 @@ $menu_items = menu_build_tree(wp_get_nav_menu_items(get_nav_menu_locations()['he
 					<path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
 				</svg>
 				<ul class="mobile-menu-container">
-					<?php foreach ($menu_items as $menu_item_index => $menu_item) { ?>
+					<?php
+					$w = 0;
+					foreach ($menu_items as $menu_item_index => $menu_item) { ?>
 						<li>
 							<div class="<?php echo (!isset($menu_item['children']) ? 'single' : ''); ?>">
 								<?php if (isset($menu_item['children'])) { ?>
-									<svg class="mobile-menu-accordion-toggle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor">
+									<svg class="mobile-menu-accordion-toggle <?php echo ($w == 0 ? 'active' : ''); ?>" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor">
 										<path fill-rule="evenodd" d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.75.75 0 0 1-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
 									</svg>
 								<?php } ?>
-								<a href="<?php echo $menu_item['url']; ?>" aria-label="<?php echo $menu_item['title']; ?>" class="mobile-menu-accordion">
+								<a href="<?php echo $menu_item['url']; ?>" aria-label="<?php echo $menu_item['title']; ?>" class="mobile-menu-accordion <?php echo ($w == 0 ? 'active' : ''); ?>">
 									<span><?php echo $menu_item['title']; ?></span>
 								</a>
 							</div>
 							<?php if (isset($menu_item['children'])) { ?>
-								<ul class="mobile-menu-accordion-panel">
-									<?php foreach ($menu_item['children'] as $menu_item_child_index => $menu_item_child) { ?>
+								<ul class="mobile-menu-accordion-panel" style="display: <?php echo ($w == 0 ? 'block' : ''); ?>;">
+									<?php
+									$x = 0;
+									foreach ($menu_item['children'] as $menu_item_child_index => $menu_item_child) { ?>
 										<li>
 											<div class="<?php echo (!isset($menu_item_child['children']) ? 'single' : ''); ?>">
 												<?php if (isset($menu_item_child['children'])) { ?>
@@ -257,7 +261,9 @@ $menu_items = menu_build_tree(wp_get_nav_menu_items(get_nav_menu_locations()['he
 											</div>
 											<?php if (isset($menu_item_child['children'])) { ?>
 												<ul class="mobile-menu-accordion-panel">
-													<?php foreach ($menu_item_child['children'] as $menu_item_grand_child_index => $menu_item_grand_child) { ?>
+													<?php
+													$y = 0;
+													foreach ($menu_item_child['children'] as $menu_item_grand_child_index => $menu_item_grand_child) { ?>
 														<li>
 															<div class="<?php echo (!isset($menu_item_grand_child['children']) ? 'single' : ''); ?>">
 																<?php if (isset($menu_item_grand_child['children'])) { ?>
@@ -271,7 +277,9 @@ $menu_items = menu_build_tree(wp_get_nav_menu_items(get_nav_menu_locations()['he
 															</div>
 															<?php if (isset($menu_item_grand_child['children'])) { ?>
 																<ul class="mobile-menu-accordion-panel">
-																	<?php foreach ($menu_item_grand_child['children'] as $menu_item_grand_grand_child_index => $menu_item_grand_grand_child) { ?>
+																	<?php
+																	$z = 0;
+																	foreach ($menu_item_grand_child['children'] as $menu_item_grand_grand_child_index => $menu_item_grand_grand_child) { ?>
 																		<li>
 																			<div class="<?php echo (!isset($menu_item_grand_grand_child['children']) ? 'single' : ''); ?>">
 																				<?php if (isset($menu_item_grand_grand_child['children'])) { ?>
@@ -286,21 +294,29 @@ $menu_items = menu_build_tree(wp_get_nav_menu_items(get_nav_menu_locations()['he
 																				<?php } ?>
 																			</div>
 																		</li>
-																	<?php }	?>
+																	<?php
+																		$z++;
+																	}	?>
 																</ul>
 															<?php }	?>
 														</li>
-													<?php }	?>
+													<?php
+														$y++;
+													}	?>
 												</ul>
 											<?php }	?>
 										</li>
-									<?php }	?>
+									<?php
+										$x++;
+									}	?>
 								</ul>
 							<?php }	?>
 						</li>
-					<?php }	?>
+					<?php
+						$w++;
+					}	?>
 				</ul>
 			</nav>
+			<div onclick="closeMobileMenu()" id="mobile-menu-overlay" class="mobile-menu-overlay"></div>
 		</div>
 	</header>
-	

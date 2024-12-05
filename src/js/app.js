@@ -1,10 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
 	function openMobileMenu() {
 		document.getElementById("mobile-menu").style.width = "100%";
+		document.getElementById("mobile-menu-overlay").style.display = "block";
+		document.getElementById("mobile-menu-overlay").style.opacity = "100%";
+
 	}
 
 	function closeMobileMenu() {
 		document.getElementById("mobile-menu").style.width = "0";
+		document.getElementById("mobile-menu-overlay").style.display = "none";
+		document.getElementById("mobile-menu-overlay").style.opacity = "0";
 	}
 
 	window.openMobileMenu = openMobileMenu;
@@ -22,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 			mobileMenuAccordionToggle[i].classList.toggle("active");
 
-			if (mobileMenuAccordionPanel && mobileMenuAccordionPanel.style.display === "block") {
+			if (mobileMenuAccordionPanel.style.display === "block") {
 				mobileMenuAccordionPanel.style.display = "none";
 			} else if (mobileMenuAccordionPanel) {
 				mobileMenuAccordionPanel.style.display = "block";
