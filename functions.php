@@ -2,9 +2,11 @@
 
 include 'vendor/autoload.php';
 
-// add_action('init', '');
+require_once get_template_directory() . '/incl/RedisConnection.php';
 
-require __DIR__ . '/includes/model-functions.php';
-require __DIR__ . '/includes/view-functions.php';
-require __DIR__ . '/includes/controller-functions.php';
-require __DIR__ . '/includes/helper-functions.php';
+require get_template_directory() . '/incl/admin-functions.php';
+require get_template_directory() . '/incl/header-functions.php';
+require get_template_directory() . '/incl/helper-functions.php';
+require get_template_directory() . '/incl/seed-functions.php';
+require get_template_directory() . '/incl/shortcode-functions.php';
+require get_template_directory() . '/incl/theme-functions.php';
