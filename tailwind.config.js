@@ -7,7 +7,7 @@ module.exports = {
     preflight: false,
   },
   important: true,
-  content: ["./src/**/*.{js,scss}", "./*.php",],
+  content: ["./src/**/*.{js,scss}", "./*.php","./**/*.php"],
   theme: {
     extend: {
       fontFamily: {

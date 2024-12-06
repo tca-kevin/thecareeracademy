@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Find parent menu item
+ *
+ * @param [type] $menu_array
+ * @param [type] $menu_parent_id
+ * @param [type] $menu_current_item
+ * @param [type] $menu_depth
+ * @return void
+ */
 function menu_find_parent($menu_array, $menu_parent_id, $menu_current_item, $menu_depth)
 {
 	foreach ($menu_array as $menu_index => $menu_item) {
@@ -25,6 +34,12 @@ function menu_find_parent($menu_array, $menu_parent_id, $menu_current_item, $men
 	return $menu_array;
 }
 
+/**
+ * Build menu tree
+ *
+ * @param [type] $menu_items
+ * @return void
+ */
 function menu_build_tree($menu_items)
 {
 	$menu_array = [];
@@ -48,7 +63,12 @@ function menu_build_tree($menu_items)
 
 	return $menu_array;
 }
-
+/**
+ * Cache menu tree
+ *
+ * @param [type] $menu_location
+ * @return array
+ */
 function menu_cached_tree($menu_location)
 {
 	$redis = RedisConnection::getInstance();
@@ -94,3 +114,13 @@ function menu_cached_tree_invalidation_on_update()
 }
 
 add_action('wp_update_nav_menu_item', 'menu_cached_tree_invalidation_on_update');
+
+/**
+ * Get header template
+ *
+ * @return string
+ */
+function get_header_template()
+{
+	return 'default';
+}
