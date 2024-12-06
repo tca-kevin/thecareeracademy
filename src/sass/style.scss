@@ -402,7 +402,7 @@ ul.header-menu {
             }
 
             > svg {
-                @apply size-4 fill-green-500 transition-all;
+                @apply size-8 fill-green-500 transition-all;
             }
         }
 
@@ -445,7 +445,7 @@ ul.header-menu {
                 }
 
                 > svg {
-                    @apply size-4 fill-green-500 transition-all;
+                    @apply size-6 fill-green-500 transition-all;
                 }
             }
 
@@ -538,7 +538,7 @@ nav.mobile-menu {
                     }
 
                     > svg {
-                        @apply size-8 fill-green-500 cursor-pointer transition-all;
+                        @apply size-6 fill-green-500 cursor-pointer transition-all;
 
                         &:hover {
                             @apply fill-orange-500;
