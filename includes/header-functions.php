@@ -73,9 +73,11 @@ function menu_build_tree($menu_location)
  */
 function get_menu_items($menu_location)
 {
+	global $redis;
+
 	$cache_key = 'wp:tca:menu_items_' . $menu_location;
 
-	$cached = (\TheCareerAcademy\Includes\Redis::getInstance())->get($cache_key);
+	$cached = $redis->get($cache_key);
 
 	if ($cached) {
 		return unserialize($cached);
@@ -83,7 +85,7 @@ function get_menu_items($menu_location)
 
 	$menu_items = menu_build_tree($menu_location);
 
-	(\TheCareerAcademy\Includes\Redis::getInstance())->setex($cache_key, 86400, serialize($menu_items));
+	$redis->setex($cache_key, 86400, serialize($menu_items));
 
 	return $menu_items;
 }
@@ -95,10 +97,12 @@ function get_menu_items($menu_location)
  */
 function invalidate_menu_items_cache_on_update()
 {
+	global $redis;
+
 	foreach (['header', 'footer'] as $menu_location) {
 		$cache_key = 'wp:tca:menu_items_' . $menu_location;
 
-		(\TheCareerAcademy\Includes\Redis::getInstance())->del($cache_key);
+		$redis->del($cache_key);
 	}
 }
 
@@ -112,9 +116,11 @@ add_action('wp_update_nav_menu_item', 'menu_cached_tree_invalidation_on_update')
  */
 function check_if_header_is_allowed($field_name_id)
 {
+	global $redis;
+
 	$cache_key = 'wp:tca:check_if_header_is_allowed_' . $field_name_id;
 
-	$cached = (\TheCareerAcademy\Includes\Redis::getInstance())->get($cache_key);
+	$cached = $redis->get($cache_key);
 
 	if ($cached) {
 		return unserialize($cached);
@@ -125,7 +131,7 @@ function check_if_header_is_allowed($field_name_id)
 		check_if_post_s_categories_are_allowed('header_' . $field_name_id . '_include_product_categories', 'header_' . $field_name_id . '_exclude_product_categories', 'product_cat') &&
 		check_if_post_s_categories_are_allowed('header_' . $field_name_id . '_include_subject_categories', 'header_' . $field_name_id . '_exclude_subject_categories', 'subject');
 
-	(\TheCareerAcademy\Includes\Redis::getInstance())->setex($cache_key, 86400, serialize($is_allowed));
+	$redis->setex($cache_key, 86400, serialize($is_allowed));
 
 	return $is_allowed;
 }
