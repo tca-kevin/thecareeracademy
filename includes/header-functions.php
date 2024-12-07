@@ -109,16 +109,18 @@ function invalidate_menu_items_cache_on_update()
 add_action('wp_update_nav_menu_item', 'menu_cached_tree_invalidation_on_update');
 
 /**
- * Check if check if header is allowed
+ * Check header render condition
  *
  * @param [type] $field_name_id
  * @return void
  */
-function check_if_header_is_allowed($field_name_id)
+function check_header_render_condition($field_name_id)
 {
+	$current_post_id = get_the_ID();
+
 	global $redis;
 
-	$cache_key = 'wp:tca:check_if_header_is_allowed_' . $field_name_id;
+	$cache_key = 'wp:tca:is_header_' . $field_name_id . '_allowed_on_post_' . $current_post_id;
 
 	$cached = $redis->get($cache_key);
 
@@ -126,10 +128,10 @@ function check_if_header_is_allowed($field_name_id)
 		return unserialize($cached);
 	}
 
-	$is_allowed = check_if_post_is_allowed('header_' . $field_name_id . '_include_pages', 'header_' . $field_name_id . '_exclude pages') &&
-		check_if_post_s_categories_are_allowed('header_' . $field_name_id . '_include_categories', 'header_' . $field_name_id . '_exclude_categories', 'category') &&
-		check_if_post_s_categories_are_allowed('header_' . $field_name_id . '_include_product_categories', 'header_' . $field_name_id . '_exclude_product_categories', 'product_cat') &&
-		check_if_post_s_categories_are_allowed('header_' . $field_name_id . '_include_subject_categories', 'header_' . $field_name_id . '_exclude_subject_categories', 'subject');
+	$is_allowed = check_if_post_is_allowed($current_post_id, 'header_' . $field_name_id . '_include_pages', 'header_' . $field_name_id . '_exclude pages') &&
+		check_if_post_s_categories_are_allowed($current_post_id, 'header_' . $field_name_id . '_include_categories', 'header_' . $field_name_id . '_exclude_categories', 'category') &&
+		check_if_post_s_categories_are_allowed($current_post_id, 'header_' . $field_name_id . '_include_product_categories', 'header_' . $field_name_id . '_exclude_product_categories', 'product_cat') &&
+		check_if_post_s_categories_are_allowed($current_post_id, 'header_' . $field_name_id . '_include_subject_categories', 'header_' . $field_name_id . '_exclude_subject_categories', 'subject');
 
 	$redis->setex($cache_key, 86400, serialize($is_allowed));
 
