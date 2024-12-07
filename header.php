@@ -11,5 +11,13 @@
 <body <?php body_class(debug_screens() . ' h-full'); ?>>
 	<?php
 	wp_body_open();
-	get_template_part('tmpl/header', get_header_template());
+
+	if (get_field('header_3_enabled', 'option') && show_header(3)) {
+		get_template_part('tmpl/header', '3');
+	} else if (get_field('header_2_enabled', 'option') && show_header(2)) {
+		get_template_part('tmpl/header', '2');
+	} else {
+		get_template_part('tmpl/header', 'default');
+	}
+
 	?>

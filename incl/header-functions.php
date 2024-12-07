@@ -64,20 +64,20 @@ function menu_build_tree($menu_items)
 	return $menu_array;
 }
 /**
- * Cache menu tree
+ * Cache menu items
  *
  * @param [type] $menu_location
  * @return array
  */
-function menu_cached_tree($menu_location)
+function menu_cached_items($menu_location)
 {
 	$redis = RedisConnection::getInstance();
 
 	$cache_key = 'wp:tca:menu_items_' . $menu_location;
-	$cached_menu = $redis->get($cache_key);
+	$cached = $redis->get($cache_key);
 
-	if ($cached_menu) {
-		return unserialize($cached_menu);
+	if ($cached) {
+		return unserialize($cached);
 	}
 
 	$menu_locations = get_nav_menu_locations();
@@ -86,7 +86,7 @@ function menu_cached_tree($menu_location)
 		$menu_items_raw = wp_get_nav_menu_items($menu_locations[$menu_location]);
 		$menu_items = menu_build_tree($menu_items_raw);
 
-		$redis->setex($cache_key, 3600, serialize($menu_items));
+		$redis->setex($cache_key, 86400, serialize($menu_items));
 
 		return $menu_items;
 	}
@@ -116,11 +116,27 @@ function menu_cached_tree_invalidation_on_update()
 add_action('wp_update_nav_menu_item', 'menu_cached_tree_invalidation_on_update');
 
 /**
- * Get header template
+ * Show header
  *
- * @return string
+ * @return void
  */
-function get_header_template()
+function show_header($field_name_id)
 {
-	return 'default';
+	$redis = RedisConnection::getInstance();
+
+	$cache_key = 'wp:tca:show_header_' . $field_name_id;
+	$cached = $redis->get($cache_key);
+
+	if ($cached) {
+		return unserialize($cached);
+	}
+
+	$show_header = is_post_allowed('header_' . $field_name_id . '_include_pages', 'header_' . $field_name_id . '_exclude pages') &&
+		is_category_allowed('header_' . $field_name_id . '_include_categories', 'header_' . $field_name_id . '_exclude_categories', 'category') &&
+		is_category_allowed('header_' . $field_name_id . '_include_product_categories', 'header_' . $field_name_id . '_exclude_product_categories', 'product_cat') &&
+		is_category_allowed('header_' . $field_name_id . '_include_subject_categories', 'header_' . $field_name_id . '_exclude_subject_categories', 'subject');
+
+	$redis->setex($cache_key, 86400, serialize($show_header));
+
+	return $show_header;
 }
