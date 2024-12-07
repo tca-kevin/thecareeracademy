@@ -9,27 +9,27 @@
 function dd($value)
 {
 	d($value);
-
 	die();
 }
 
 /**
- * Enable tailwindcss debug screens if in development mode
+ * Print 'debug-screens' if in development mode
  *
  * @return void
  */
-function debug_screens()
+function print_debug_screens_if_in_development_mode()
 {
 	return file_exists(__DIR__ . '/../dev.flag') ? 'debug-screens' : '';
 }
 
 /**
- * Is post allowed
+ * Check if post is allowed
  *
- * @param [type] $field_name
- * @return boolean
+ * @param [type] $include_field_name
+ * @param [type] $exclude_field_name
+ * @return void
  */
-function is_post_allowed($include_field_name, $exclude_field_name)
+function check_if_post_is_allowed($include_field_name, $exclude_field_name)
 {
 	$current_post_id = get_the_ID();
 
@@ -59,13 +59,14 @@ function is_post_allowed($include_field_name, $exclude_field_name)
 }
 
 /**
- * Is catewgory allowed
+ * Check if post's categories are allowed
  *
- * @param [type] $field_name
+ * @param [type] $include_field_name
+ * @param [type] $exclude_field_name
  * @param [type] $taxonomy
- * @return boolean
+ * @return void
  */
-function is_category_allowed($include_field_name, $exclude_field_name, $taxonomy)
+function check_if_post_s_categories_are_allowed($include_field_name, $exclude_field_name, $taxonomy)
 {
 	$current_post_id = get_the_ID();
 	$current_categories = get_the_terms($current_post_id, $taxonomy);

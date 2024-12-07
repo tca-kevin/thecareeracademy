@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Find parent menu item
+ * Menu find parent
  *
  * @param [type] $menu_array
  * @param [type] $menu_parent_id
@@ -35,13 +35,14 @@ function menu_find_parent($menu_array, $menu_parent_id, $menu_current_item, $men
 }
 
 /**
- * Build menu tree
+ * Menu build tree
  *
- * @param [type] $menu_items
+ * @param [type] $menu_location
  * @return void
  */
-function menu_build_tree($menu_items)
+function menu_build_tree($menu_location)
 {
+	$menu_items = wp_get_nav_menu_items(get_nav_menu_locations()[$menu_location]);
 	$menu_array = [];
 
 	foreach ($menu_items as $menu_item) {
@@ -63,80 +64,68 @@ function menu_build_tree($menu_items)
 
 	return $menu_array;
 }
+
 /**
- * Cache menu items
+ * Get menu items
  *
  * @param [type] $menu_location
  * @return array
  */
-function menu_cached_items($menu_location)
+function get_menu_items($menu_location)
 {
-	$redis = RedisConnection::getInstance();
-
 	$cache_key = 'wp:tca:menu_items_' . $menu_location;
-	$cached = $redis->get($cache_key);
+
+	$cached = (\TheCareerAcademy\Includes\Redis::getInstance())->get($cache_key);
 
 	if ($cached) {
 		return unserialize($cached);
 	}
 
-	$menu_locations = get_nav_menu_locations();
+	$menu_items = menu_build_tree($menu_location);
 
-	if (isset($menu_locations[$menu_location])) {
-		$menu_items_raw = wp_get_nav_menu_items($menu_locations[$menu_location]);
-		$menu_items = menu_build_tree($menu_items_raw);
+	(\TheCareerAcademy\Includes\Redis::getInstance())->setex($cache_key, 86400, serialize($menu_items));
 
-		$redis->setex($cache_key, 86400, serialize($menu_items));
-
-		return $menu_items;
-	}
-
-	return [];
+	return $menu_items;
 }
 
 /**
- * Menu cached tree invalidation on update
+ * Invalidate menu items cache on update
  *
- * @param [type] $post_id
  * @return void
  */
-function menu_cached_tree_invalidation_on_update()
+function invalidate_menu_items_cache_on_update()
 {
-	$redis = RedisConnection::getInstance();
-
-	$menu_locations = ['header', 'footer'];
-
-	foreach ($menu_locations as $menu_location) {
+	foreach (['header', 'footer'] as $menu_location) {
 		$cache_key = 'wp:tca:menu_items_' . $menu_location;
 
-		$redis->del($cache_key);
+		(\TheCareerAcademy\Includes\Redis::getInstance())->del($cache_key);
 	}
 }
 
 add_action('wp_update_nav_menu_item', 'menu_cached_tree_invalidation_on_update');
 
 /**
- * Show header
+ * Check if check if header is allowed
  *
+ * @param [type] $field_name_id
  * @return void
  */
-function show_header($field_name_id)
+function check_if_header_is_allowed($field_name_id)
 {
-	$redis = RedisConnection::getInstance();
+	$cache_key = 'wp:tca:check_if_header_is_allowed_' . $field_name_id;
 
-	$cache_key = 'wp:tca:show_header_' . $field_name_id;
-	$cached = $redis->get($cache_key);
+	$cached = (\TheCareerAcademy\Includes\Redis::getInstance())->get($cache_key);
 
 	if ($cached) {
 		return unserialize($cached);
 	}
 
-	$show_header = is_post_allowed('header_' . $field_name_id . '_include_pages', 'header_' . $field_name_id . '_exclude pages') &&
-		is_category_allowed('header_' . $field_name_id . '_include_categories', 'header_' . $field_name_id . '_exclude_categories', 'category') &&
-		is_category_allowed('header_' . $field_name_id . '_include_product_categories', 'header_' . $field_name_id . '_exclude_product_categories', 'product_cat') &&
-		is_category_allowed('header_' . $field_name_id . '_include_subject_categories', 'header_' . $field_name_id . '_exclude_subject_categories', 'subject');
+	$is_allowed = check_if_post_is_allowed('header_' . $field_name_id . '_include_pages', 'header_' . $field_name_id . '_exclude pages') &&
+		check_if_post_s_categories_are_allowed('header_' . $field_name_id . '_include_categories', 'header_' . $field_name_id . '_exclude_categories', 'category') &&
+		check_if_post_s_categories_are_allowed('header_' . $field_name_id . '_include_product_categories', 'header_' . $field_name_id . '_exclude_product_categories', 'product_cat') &&
+		check_if_post_s_categories_are_allowed('header_' . $field_name_id . '_include_subject_categories', 'header_' . $field_name_id . '_exclude_subject_categories', 'subject');
 
-	$redis->setex($cache_key, 86400, serialize($show_header));
+	(\TheCareerAcademy\Includes\Redis::getInstance())->setex($cache_key, 86400, serialize($is_allowed));
 
-	return $show_header;
+	return $is_allowed;
 }

@@ -1,6 +1,8 @@
 <?php
 
-class RedisConnection
+namespace TheCareerAcademy\Includes;
+
+class Redis
 {
 	private static $instance = null;
 	private $redis;
@@ -15,7 +17,7 @@ class RedisConnection
 	public static function getInstance()
 	{
 		if (self::$instance === null) {
-			self::$instance = new RedisConnection();
+			self::$instance = new self();
 		}
 
 		return self::$instance->redis;

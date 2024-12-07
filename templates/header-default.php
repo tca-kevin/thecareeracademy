@@ -1,4 +1,4 @@
-<?php $menu_items = menu_cached_items('header'); ?>
+<?php $menu_items = get_menu_items('header'); ?>
 
 <header class="shadow-md">
 	<div class="relative container mx-auto px-4 flex justify-start items-center gap-x-8 h-20">

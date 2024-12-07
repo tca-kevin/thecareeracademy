@@ -472,7 +472,7 @@ nav.mobile-menu {
     }
 
     ul.mobile-menu-container {
-        @apply flex flex-col gap-y-4 list-none p-0 m-0 px-4 md:px-8 pb-4;
+        @apply flex flex-col gap-y-2 list-none p-0 m-0 px-4 md:px-8 pb-4;
 
         > li {
             > div {
