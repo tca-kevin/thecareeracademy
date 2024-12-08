@@ -65,11 +65,11 @@ function preload_custom_fonts_in_head_tag()
 // add_action('wp_head', 'preload_custom_fonts_in_head_tag', 1);
 
 /**
- * Manage scripts and styles at the start
+ * Manage scripts and styles after head open
  *
  * @return void
  */
-function manage_scripts_and_styles_at_the_start()
+function manage_scripts_and_styles_after_head_open()
 {
 	// wp_enqueue_style('storefront-style', get_template_directory_uri() . '/style.css'); // Storefront Child experiment
 
@@ -101,21 +101,50 @@ function manage_scripts_and_styles_at_the_start()
 	}
 }
 
-add_action('wp_enqueue_scripts', 'manage_scripts_and_styles_at_the_start');
+add_action('wp_enqueue_scripts', 'manage_scripts_and_styles_after_head_open');
 
 /**
- * Manage scripts and styles at the end
+ * Manage scripts and styles before head close
  *
  * @return void
  */
-function manage_scripts_and_styles_at_the_end()
+function manage_scripts_and_styles_before_head_close()
 {
 	if (is_front_page()) {
 		wp_deregister_script('sourcebuster-js'); // /wp-content/plugins/woocommerce/assets/js/frontend/order-attribution.min.js | /wp-content/plugins/woocommerce/assets/js/sourcebuster/sourcebuster.min.js
 	}
 }
 
-add_action('wp_enqueue_scripts', 'manage_scripts_and_styles_at_the_end', 9999);
+add_action('wp_enqueue_scripts', 'manage_scripts_and_styles_before_head_close', 9999);
+
+/**
+ * Manage scripts and styles after body open
+ *
+ * @return void
+ */
+function manage_scripts_and_styles_after_body_open() {}
+
+add_action('wp_body_open', 'manage_scripts_and_styles_after_body_open');
+
+/**
+ * Manage scripts and styles before body close
+ *
+ * @return void
+ */
+function manage_scripts_and_styles_before_body_close()
+{
+	if (is_dev()) {
+?>
+		<script type="module" src="https://catest.test:5173/src/js/lazyload.js"></script>
+	<?php
+	} else {
+	?>
+		<script type="module" src="https://catest.test/wp-content/themes/thecareeracademy/dist/assets/js/lazyload.js?ver=<?php echo wp_get_theme()->get('Version'); ?>"></script>
+<?php
+	}
+}
+
+add_action('wp_footer', 'manage_scripts_and_styles_before_body_close', 100);
 
 /**
  * Manage scripts and styles before loading any template
