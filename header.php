@@ -25,4 +25,10 @@
 	} else {
 		get_template_part('templates/header', 'default');
 	}
+
+	foreach (get_field('header_bottom_banners', 'option') as $header_bottom_banner_index => $header_bottom_banner) {
+		if ($header_bottom_banner['enabled'] && check_render_condition_for_flexible_content($header_bottom_banner['acf_fc_layout'] . '_' . ++$header_bottom_banner_index, $header_bottom_banner['include_pages'], $header_bottom_banner['include_categories'], $header_bottom_banner['include_product_categories'], $header_bottom_banner['include_subject_categories'], $header_bottom_banner['exclude_pages'], $header_bottom_banner['exclude_categories'], $header_bottom_banner['exclude_product_categories'], $header_bottom_banner['exclude_subject_categories'])) {
+			get_template_part('templates/' . str_replace('_', '-', $header_bottom_banner['acf_fc_layout']), null, $header_bottom_banner);
+		}
+	}
 	?>
