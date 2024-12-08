@@ -52,29 +52,9 @@
 		<script type="module" src="https://catest.test/wp-content/themes/thecareeracademy/dist/assets/js/popup.js?ver=<?php echo wp_get_theme()->get('Version'); ?>"></script>
 	<?php
 	}
-	?>
 
-	<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
-	<script>
-		hbspt.forms.create({
-			region: 'na1',
-			portalId: '20367523',
-			formId: 'b7bdf4c9-74c9-4163-90a4-8547a1be2e81',
-			submitButtonClass: 'hubspot-form-submit-button',
-			target: '.hubspot-form',
-			onFormReady: (form) => {
-				const submitButton = form.querySelector('.hubspot-form-submit-button');
-				submitButton.style.fontFamily = '"Neue Haas Grotesk Display Pro", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"';
-				submitButton.style.fontWeight = "500";
-				submitButton.style.color = "#FFFFFF";
-				submitButton.style.fontSize = "16px";
-				submitButton.style.padding = "8px 16px";
-				submitButton.style.border = "2px solid #FF6238";
-				submitButton.style.borderRadius = "6px";
-				submitButton.style.borderColor = "#FF6238";
-				submitButton.style.backgroundColor = "#FF6238";
-				submitButton.style.cursor = "pointer";
-			}
-		});
-	</script>
-	<div class="hubspot-form"></div>
+	foreach (get_field('popups', 'option') as $popup_index => $popup) {
+		if ($popup['enabled'] && check_render_condition_for_flexible_content($popup['acf_fc_layout'] . '_' . ++$popup_index, $popup['include_pages'], $popup['include_categories'], $popup['include_product_categories'], $popup['include_subject_categories'], $popup['exclude_pages'], $popup['exclude_categories'], $popup['exclude_product_categories'], $popup['exclude_subject_categories'])) {
+			get_template_part('templates/' . str_replace('_', '-', $popup['acf_fc_layout']), null, $popup);
+		}
+	}
