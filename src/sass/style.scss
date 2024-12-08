@@ -376,6 +376,10 @@ Tags:         silence is golden
     .font-mono {
         letter-spacing: 0.0625rem;
     }
+
+    a {
+        @apply no-underline text-orange-500 transition-all hover:text-orange-400;
+    }
 }
 
 ul.header-menu {

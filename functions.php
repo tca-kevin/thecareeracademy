@@ -115,6 +115,7 @@ $redis = \TheCareerAcademy\Includes\Redis::getInstance();
 
 require get_template_directory() . '/includes/admin-functions.php';
 require get_template_directory() . '/includes/cli-functions.php';
+require get_template_directory() . '/includes/footer-functions.php';
 require get_template_directory() . '/includes/header-functions.php';
 require get_template_directory() . '/includes/helper-functions.php';
 require get_template_directory() . '/includes/shortcode-functions.php';
