@@ -1,5 +1,5 @@
 <?php
-if (check_footer_render_condition()) {
+if (check_render_condition('footer')) {
 	get_template_part('templates/footer', 'default');
 }
 ?>

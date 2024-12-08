@@ -12,9 +12,15 @@
 	<?php
 	wp_body_open();
 
-	if (get_field('header_3_enabled', 'option') && check_header_render_condition('3')) {
+	foreach (get_field('header_top_banners', 'option') as $header_top_banner_index => $header_top_banner) {
+		if ($header_top_banner['enabled'] && check_render_condition_for_flexible_content($header_top_banner['acf_fc_layout'] . '_' . ++$header_top_banner_index, $header_top_banner['include_pages'], $header_top_banner['include_categories'], $header_top_banner['include_product_categories'], $header_top_banner['include_subject_categories'], $header_top_banner['exclude_pages'], $header_top_banner['exclude_categories'], $header_top_banner['exclude_product_categories'], $header_top_banner['exclude_subject_categories'])) {
+			get_template_part('templates/' . str_replace('_', '-', $header_top_banner['acf_fc_layout']), null, $header_top_banner);
+		}
+	}
+
+	if (get_field('header_3_enabled', 'option') && check_render_condition('header_3')) {
 		get_template_part('templates/header', '3');
-	} else if (get_field('header_2_enabled', 'option') && check_header_render_condition('2')) {
+	} else if (get_field('header_2_enabled', 'option') && check_render_condition('header_2')) {
 		get_template_part('templates/header', '2');
 	} else {
 		get_template_part('templates/header', 'default');

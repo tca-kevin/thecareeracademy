@@ -416,7 +416,7 @@ ul.header-menu {
     }
 
     ul {
-        @apply hidden list-none p-0 m-0 absolute z-10 top-full left-0 bg-white shadow-md;
+        @apply hidden list-none p-0 m-0 absolute top-full left-0 bg-white shadow-md;
 
         ul {
             @apply top-0 left-full;
@@ -465,11 +465,11 @@ svg.mobile-menu-open-button {
 }
 
 .mobile-menu-overlay {
-    @apply hidden fixed z-0 inset-0 w-screen h-screen bg-green-500/50 opacity-0 overflow-x-hidden cursor-pointer transition-opacity;
+    @apply hidden fixed z-20 inset-0 w-screen h-screen bg-green-500/50 opacity-0 overflow-x-hidden cursor-pointer transition-opacity;
 }
 
 nav.mobile-menu {
-    @apply fixed z-10 top-0 right-0 max-w-xs sm:max-w-sm md:max-w-md w-0 h-full bg-white shadow-lg overflow-x-hidden transition-all;
+    @apply fixed z-30 top-0 right-0 max-w-xs sm:max-w-sm md:max-w-md w-0 h-full bg-white shadow-lg overflow-x-hidden transition-all;
 
     svg.mobile-menu-close-button {
         @apply absolute top-4 right-4 size-10 fill-black cursor-pointer transition-all hover:fill-green-500;
@@ -526,10 +526,10 @@ nav.mobile-menu {
             @apply hidden overflow-hidden list-none p-0 m-0 ml-8;
 
             ul {
-                @apply list-none p-0 m-0 ml-8;
+                @apply list-none p-0 m-0 ml-6;
 
                 ul {
-                    @apply list-none p-0 m-0 ml-8;
+                    @apply list-none p-0 m-0 ml-6;
                 }
             }
 
@@ -573,7 +573,7 @@ nav.mobile-menu {
                         }
 
                         > span {
-                            @apply font-sans font-medium text-base text-black;
+                            @apply font-sans font-medium text-base text-black leading-none;
                         }
                     }
                 }

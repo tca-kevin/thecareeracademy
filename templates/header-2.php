@@ -2,7 +2,7 @@
 
 <header class="shadow-md">
 	<div class="relative container mx-auto px-4 flex justify-start items-center gap-x-8 h-20">
-		<a href="<?php echo home_url(); ?>" aria-label="<?php echo __('Company Logo', 'thecareeracademy'); ?>" class="block lg:hidden xl:block">
+		<a href="<?php echo home_url(); ?>" aria-label="<?php echo __('Company Logo', 'thecareeracademy'); ?>" class="block lg:hidden xl:block h-16">
 			<svg class="h-16 transition-all hover:fill-green-500" version="1.1" id="The_Career_Academy" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
 				y="0px" viewBox="0 0 130.4 48" style="enable-background:new 0 0 130.4 48;" xml:space="preserve">
 				<g>
@@ -75,7 +75,7 @@
 				</g>
 			</svg>
 		</a>
-		<a href="<?php echo home_url(); ?>" aria-label="<?php echo __('Company Logo', 'thecareeracademy'); ?>" class="hidden lg:block xl:hidden">
+		<a href="<?php echo home_url(); ?>" aria-label="<?php echo __('Company Logo', 'thecareeracademy'); ?>" class="hidden lg:block xl:hidden h-16">
 			<svg class="h-16 transition-all hover:fill-green-500" version="1.1" id="The_Career_Academy" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
 				y="0px" viewBox="0 0 39.6 48" style="enable-background:new 0 0 39.6 48;" xml:space="preserve">
 				<path d="M38.8,3.3h-3.2V0.8c0-0.5-0.4-0.8-0.8-0.8c-4.5,0-10.1,2-13.6,5.3c-0.5,0.5-1,1.1-1.4,1.8c-0.4-0.7-0.9-1.3-1.4-1.8
@@ -205,7 +205,7 @@
 				<path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
 			</svg>
 			<div class="flex justify-between items-end px-4 md:px-8 pt-4 md:pt-8 pb-4">
-				<a href="<?php echo home_url(); ?>" aria-label="<?php echo __('Company Logo', 'thecareeracademy'); ?>" class="hidden sm:block">
+				<a href="<?php echo home_url(); ?>" aria-label="<?php echo __('Company Logo', 'thecareeracademy'); ?>" class="hidden sm:block h-16">
 					<svg class="h-16 transition-all hover:fill-green-500" version="1.1" id="The_Career_Academy" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
 						y="0px" viewBox="0 0 130.4 48" style="enable-background:new 0 0 130.4 48;" xml:space="preserve">
 						<g>
@@ -278,7 +278,7 @@
 						</g>
 					</svg>
 				</a>
-				<a href="<?php echo home_url(); ?>" aria-label="<?php echo __('Company Logo', 'thecareeracademy'); ?>" class="block sm:hidden">
+				<a href="<?php echo home_url(); ?>" aria-label="<?php echo __('Company Logo', 'thecareeracademy'); ?>" class="block sm:hidden h-16">
 					<svg class="h-16 transition-all hover:fill-green-500" version="1.1" id="The_Career_Academy" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
 						y="0px" viewBox="0 0 39.6 48" style="enable-background:new 0 0 39.6 48;" xml:space="preserve">
 						<path d="M38.8,3.3h-3.2V0.8c0-0.5-0.4-0.8-0.8-0.8c-4.5,0-10.1,2-13.6,5.3c-0.5,0.5-1,1.1-1.4,1.8c-0.4-0.7-0.9-1.3-1.4-1.8
@@ -310,7 +310,7 @@
 						</g>
 					</svg>
 				</a>
-				<a href="<?php echo wc_get_cart_url(); ?>" aria-label="<?php echo wc_get_cart_url(); ?>" target="_self" class="relative mr-20">
+				<a href="<?php echo wc_get_cart_url(); ?>" aria-label="<?php echo wc_get_cart_url(); ?>" target="_self" class="relative mr-16">
 					<div class="absolute -top-0 -right-0 translate-x-full -translate-y-1/2">
 						<?php if (WC()->cart->get_cart_contents_count()) { ?>
 							<span class="font-sans font-semibold text-sm text-white text-center leading-none bg-red-500 px-1.5 py-0 rounded-full"><?php echo WC()->cart->get_cart_contents_count(); ?></span>

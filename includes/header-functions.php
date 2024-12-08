@@ -89,33 +89,3 @@ function get_menu_items($menu_location)
 
 	return $menu_items;
 }
-
-/**
- * Check header render condition
- *
- * @param [type] $field_name_id
- * @return void
- */
-function check_header_render_condition($field_name_id)
-{
-	$current_post_id = get_the_ID();
-
-	global $redis;
-
-	$cache_key = 'wp:tca:is_header_' . $field_name_id . '_allowed_on_post_' . $current_post_id;
-
-	$cached = $redis->get($cache_key);
-
-	if ($cached) {
-		return unserialize($cached);
-	}
-
-	$is_allowed = check_if_post_is_allowed($current_post_id, 'header_' . $field_name_id . '_include_pages', 'header_' . $field_name_id . '_exclude pages') &&
-		check_if_post_s_categories_are_allowed($current_post_id, 'header_' . $field_name_id . '_include_categories', 'header_' . $field_name_id . '_exclude_categories', 'category') &&
-		check_if_post_s_categories_are_allowed($current_post_id, 'header_' . $field_name_id . '_include_product_categories', 'header_' . $field_name_id . '_exclude_product_categories', 'product_cat') &&
-		check_if_post_s_categories_are_allowed($current_post_id, 'header_' . $field_name_id . '_include_subject_categories', 'header_' . $field_name_id . '_exclude_subject_categories', 'subject');
-
-	$redis->setex($cache_key, 86400, serialize($is_allowed));
-
-	return $is_allowed;
-}
