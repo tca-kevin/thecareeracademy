@@ -152,7 +152,7 @@
 					<?php if (get_field('company_physical_address', 'option')) { ?>
 						<li class="flex flex-col 2xl:flex-row gap-x-1">
 							<div class="inline-block min-w-24 font-sans font-semibold text-lg text-white"><?php echo __('Address:', 'thecareeracademy') ?></div>
-							<a class="font-sans font-normal text-lg text-white transition-all hover:text-orange-400"><?php echo get_field('company_physical_address', 'option'); ?></a>
+							<div class="font-sans font-normal text-lg text-white"><?php echo get_field('company_physical_address', 'option'); ?></div>
 						</li>
 					<?php } ?>
 				</ul>
