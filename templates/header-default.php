@@ -189,7 +189,7 @@
 					</svg>
 					<?php echo get_field('header_button_link_2', 'option')['title']; ?>
 				</a>
-				<a href="<?php echo wc_get_cart_url(); ?>" aria-label="<?php echo wc_get_cart_url(); ?>" target="_self" class="relative">
+				<a href="<?php echo wc_get_cart_url(); ?>" aria-label="<?php echo wc_get_cart_url(); ?>" target="_self" class="relative mr-4">
 					<div class="absolute -top-0 -right-0 translate-x-full -translate-y-1/2">
 						<?php if (WC()->cart->get_cart_contents_count()) { ?>
 							<span class="font-sans font-semibold text-sm text-white text-center leading-none bg-red-500 px-1.5 py-0 rounded-full"><?php echo WC()->cart->get_cart_contents_count(); ?></span>

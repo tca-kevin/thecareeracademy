@@ -185,7 +185,7 @@
 				<a href="<?php echo get_field('header_button_link', 'option')['url']; ?>" aria-label="<?php echo get_field('header_button_link', 'option')['title']; ?>" target="<?php echo get_field('header_button_link', 'option')['target']; ?>" class="inline-flex justify-center items-center gap-x-1 font-sans font-semibold text-base text-white text-nowrap min-w-36 bg-orange-500 px-4 py-2 border-solid border-2 border-orange-500 rounded-md transition-all hover:bg-orange-400 hover:border-orange-400 hover:shadow-md">
 					<?php echo get_field('header_button_link', 'option')['title']; ?>
 				</a>
-				<a href="<?php echo wc_get_cart_url(); ?>" aria-label="<?php echo wc_get_cart_url(); ?>" target="_self" class="relative">
+				<a href="<?php echo wc_get_cart_url(); ?>" aria-label="<?php echo wc_get_cart_url(); ?>" target="_self" class="relative mr-4">
 					<div class="absolute -top-0 -right-0 translate-x-full -translate-y-1/2">
 						<?php if (WC()->cart->get_cart_contents_count()) { ?>
 							<span class="font-sans font-semibold text-sm text-white text-center leading-none bg-red-500 px-1.5 py-0 rounded-full"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
