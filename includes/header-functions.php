@@ -91,24 +91,6 @@ function get_menu_items($menu_location)
 }
 
 /**
- * Invalidate menu items cache on update
- *
- * @return void
- */
-function invalidate_menu_items_cache_on_update()
-{
-	global $redis;
-
-	foreach (['header', 'footer'] as $menu_location) {
-		$cache_key = 'wp:tca:menu_items_' . $menu_location;
-
-		$redis->del($cache_key);
-	}
-}
-
-add_action('wp_update_nav_menu_item', 'menu_cached_tree_invalidation_on_update');
-
-/**
  * Check header render condition
  *
  * @param [type] $field_name_id

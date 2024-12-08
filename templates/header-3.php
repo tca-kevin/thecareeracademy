@@ -108,12 +108,15 @@
 			</svg>
 		</a>
 		<nav class="h-full hidden lg:flex basis-full items-center gap-x-8">
-			<?php if(get_field('company_phone_number', 'option')) { ?>
-			<a href="tel:<?php echo get_field('company_phone_number', 'option')['url']; ?>" aria-label="<?php echo get_field('company_phone_number', 'option')['url']; ?>" target="<?php echo get_field('company_phone_number', 'option')['target']; ?>" class="relative shrink-0 w-11 h-11 border-solid border-3 border-black rounded-full transition-all hover:bg-green-500 hover:border-green-500 hover:scale-110 group">
-				<svg class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-6 fill-black transition-all group-hover:fill-white group-hover:-rotate-12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-					<path fill-rule="evenodd" d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 0 1-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 0 0 6.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 0 1 1.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 0 1-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5Z" clip-rule="evenodd" />
-				</svg>
-			</a>
+			<?php if (get_field('company_phone_number', 'option')) { ?>
+				<a href="tel:<?php echo get_field('company_phone_number', 'option')['url']; ?>" aria-label="<?php echo get_field('company_phone_number', 'option')['url']; ?>" target="<?php echo get_field('company_phone_number', 'option')['target']; ?>" class="flex items-center gap-x-4 no-underline group">
+					<div class="relative shrink-0 w-11 h-11 bg-green-500 border-solid border-3 border-green rounded-full transition-all group-hover:bg-orange-500 group-hover:border-orange-500 group-hover:scale-110">
+						<svg class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-6 fill-white transition-all group-hover:-rotate-12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+							<path fill-rule="evenodd" d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 0 1-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 0 0 6.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 0 1 1.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 0 1-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5Z" clip-rule="evenodd" />
+						</svg>
+					</div>
+					<div class="font-sans font-semibold text-lg text-black text-nowrap transition-all group-hover:text-green-500"><?php echo get_field('company_phone_number', 'option')['title']; ?></div>
+				</a>
 			<?php } ?>
 			<ul class="header-menu">
 				<?php foreach ($menu_items as $menu_item_index => $menu_item) { ?>
@@ -179,28 +182,6 @@
 					</li>
 				<?php }	?>
 			</ul>
-			<div class="flex items-center gap-x-4 basis-full">
-				<?php get_search_form(); ?>
-				<a href="<?php echo get_field('header_button_link', 'option')['url']; ?>" aria-label="<?php echo get_field('header_button_link', 'option')['title']; ?>" target="<?php echo get_field('header_button_link', 'option')['target']; ?>" class="inline-flex justify-center items-center gap-x-1 font-sans font-semibold text-base text-white text-nowrap no-underline min-w-36 bg-orange-500 px-4 py-2 border-solid border-2 border-orange-500 rounded-md transition-all hover:bg-orange-400 hover:border-orange-400 hover:shadow-md">
-					<?php echo get_field('header_button_link', 'option')['title']; ?>
-				</a>
-				<a href="<?php echo get_field('header_button_link_2', 'option')['url']; ?>" aria-label="<?php echo get_field('header_button_link_2', 'option')['title']; ?>" target="<?php echo get_field('header_button_link_2', 'option')['target']; ?>" class="inline-flex justify-center items-center gap-x-1 font-sans font-semibold text-base text-green-500 text-nowrap no-underline min-w-36 bg-transparent px-4 py-2 border-solid border-2 border-green-500 rounded-md transition-all hover:text-white hover:bg-green-500 hover:border-green-500 group hover:shadow-md">
-					<svg class="size-4 stroke-2 stroke-green-500 group-hover:stroke-white group-hover:fill-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-						<path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-					</svg>
-					<?php echo get_field('header_button_link_2', 'option')['title']; ?>
-				</a>
-				<a href="<?php echo wc_get_cart_url(); ?>" aria-label="<?php echo wc_get_cart_url(); ?>" target="_self" class="relative">
-					<div class="absolute -top-0 -right-0 translate-x-full -translate-y-1/2">
-						<?php if (WC()->cart->get_cart_contents_count()) { ?>
-							<span class="font-sans font-semibold text-sm text-white text-center leading-none bg-red-500 px-1.5 py-0 rounded-full"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
-						<?php } ?>
-					</div>
-					<svg class="size-8 fill-green-500 transition-all hover:fill-orange-500" aria-hidden="true" viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg">
-						<path d="M576 216v16c0 13.255-10.745 24-24 24h-8l-26.113 182.788C514.509 462.435 494.257 480 470.37 480H105.63c-23.887 0-44.139-17.565-47.518-41.212L32 256h-8c-13.255 0-24-10.745-24-24v-16c0-13.255 10.745-24 24-24h67.341l106.78-146.821c10.395-14.292 30.407-17.453 44.701-7.058 14.293 10.395 17.453 30.408 7.058 44.701L170.477 192h235.046L326.12 82.821c-10.395-14.292-7.234-34.306 7.059-44.701 14.291-10.395 34.306-7.235 44.701 7.058L484.659 192H552c13.255 0 24 10.745 24 24zM312 392V280c0-13.255-10.745-24-24-24s-24 10.745-24 24v112c0 13.255 10.745 24 24 24s24-10.745 24-24zm112 0V280c0-13.255-10.745-24-24-24s-24 10.745-24 24v112c0 13.255 10.745 24 24 24s24-10.745 24-24zm-224 0V280c0-13.255-10.745-24-24-24s-24 10.745-24 24v112c0 13.255 10.745 24 24 24s24-10.745 24-24z"></path>
-					</svg>
-				</a>
-			</div>
 		</nav>
 		<svg onclick="openMobileMenu()" class="mobile-menu-open-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
 			<path fill-rule="evenodd" d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75H12a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
@@ -315,25 +296,17 @@
 						</g>
 					</svg>
 				</a>
-				<a href="<?php echo wc_get_cart_url(); ?>" aria-label="<?php echo wc_get_cart_url(); ?>" target="_self" class="relative mr-20">
-					<div class="absolute -top-0 -right-0 translate-x-full -translate-y-1/2">
-						<?php if (WC()->cart->get_cart_contents_count()) { ?>
-							<span class="font-sans font-semibold text-sm text-white text-center leading-none bg-red-500 px-1.5 py-0 rounded-full"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
-						<?php } ?>
-					</div>
-					<svg class="size-8 fill-green-500 transition-all hover:fill-orange-500" aria-hidden="true" viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg">
-						<path d="M576 216v16c0 13.255-10.745 24-24 24h-8l-26.113 182.788C514.509 462.435 494.257 480 470.37 480H105.63c-23.887 0-44.139-17.565-47.518-41.212L32 256h-8c-13.255 0-24-10.745-24-24v-16c0-13.255 10.745-24 24-24h67.341l106.78-146.821c10.395-14.292 30.407-17.453 44.701-7.058 14.293 10.395 17.453 30.408 7.058 44.701L170.477 192h235.046L326.12 82.821c-10.395-14.292-7.234-34.306 7.059-44.701 14.291-10.395 34.306-7.235 44.701 7.058L484.659 192H552c13.255 0 24 10.745 24 24zM312 392V280c0-13.255-10.745-24-24-24s-24 10.745-24 24v112c0 13.255 10.745 24 24 24s24-10.745 24-24zm112 0V280c0-13.255-10.745-24-24-24s-24 10.745-24 24v112c0 13.255 10.745 24 24 24s24-10.745 24-24zm-224 0V280c0-13.255-10.745-24-24-24s-24 10.745-24 24v112c0 13.255 10.745 24 24 24s24-10.745 24-24z"></path>
-					</svg>
-				</a>
 			</div>
 			<div class="flex items-center gap-x-4 basis-full px-4 md:px-8 pb-4">
-				<?php get_search_form(); ?>
-				<?php if(get_field('company_phone_number', 'option')) { ?>
-				<a href="tel:<?php echo get_field('company_phone_number', 'option')['url']; ?>" aria-label="<?php echo get_field('company_phone_number', 'option')['url']; ?>" target="<?php echo get_field('company_phone_number', 'option')['target']; ?>" class="relative shrink-0 w-11 h-11 border-solid border-3 border-black rounded-full transition-all hover:bg-green-500 hover:border-green-500 hover:scale-110 group">
-					<svg class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-6 fill-black transition-all group-hover:fill-white group-hover:-rotate-12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-						<path fill-rule="evenodd" d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 0 1-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 0 0 6.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 0 1 1.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 0 1-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5Z" clip-rule="evenodd" />
-					</svg>
-				</a>
+				<?php if (get_field('company_phone_number', 'option')) { ?>
+					<a href="tel:<?php echo get_field('company_phone_number', 'option')['url']; ?>" aria-label="<?php echo get_field('company_phone_number', 'option')['url']; ?>" target="<?php echo get_field('company_phone_number', 'option')['target']; ?>" class="flex items-center gap-x-4 no-underline group">
+						<div class="relative shrink-0 w-11 h-11 bg-green-500 border-solid border-3 border-green rounded-full transition-all group-hover:bg-orange-500 group-hover:border-orange-500 group-hover:scale-110">
+							<svg class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-6 fill-white transition-all group-hover:-rotate-12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+								<path fill-rule="evenodd" d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 0 1-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 0 0 6.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 0 1 1.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 0 1-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5Z" clip-rule="evenodd" />
+							</svg>
+						</div>
+						<div class="font-sans font-semibold text-lg text-black text-nowrap transition-all group-hover:text-green-500"><?php echo get_field('company_phone_number', 'option')['title']; ?></div>
+					</a>
 				<?php } ?>
 			</div>
 			<ul class="mobile-menu-container">
@@ -424,17 +397,6 @@
 					$w++;
 				}	?>
 			</ul>
-			<div class="flex flex-col gap-y-2 px-4 md:px-8 pb-4 md:pb-8">
-				<a href="<?php echo get_field('header_button_link', 'option')['url']; ?>" aria-label="<?php echo get_field('header_button_link', 'option')['title']; ?>" target="<?php echo get_field('header_button_link', 'option')['target']; ?>" class="inline-flex justify-center items-center gap-x-1 font-sans font-semibold text-base text-white text-nowrap no-underline min-w-36 bg-orange-500 px-4 py-2 border-solid border-2 border-orange-500 rounded-md transition-all hover:bg-orange-400 hover:border-orange-400 hover:shadow-md">
-					<?php echo get_field('header_button_link', 'option')['title']; ?>
-				</a>
-				<a href="<?php echo get_field('header_button_link_2', 'option')['url']; ?>" aria-label="<?php echo get_field('header_button_link_2', 'option')['title']; ?>" target="<?php echo get_field('header_button_link_2', 'option')['target']; ?>" class="inline-flex justify-center items-center gap-x-1 font-sans font-semibold text-base text-green-500 text-nowrap no-underline min-w-36 bg-transparent px-4 py-2 border-solid border-2 border-green-500 rounded-md transition-all hover:text-white hover:bg-green-500 hover:border-green-500 group hover:shadow-md">
-					<svg class="size-4 stroke-2 stroke-green-500 group-hover:stroke-white group-hover:fill-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-						<path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-					</svg>
-					<?php echo get_field('header_button_link_2', 'option')['title']; ?>
-				</a>
-			</div>
 		</nav>
 		<div onclick="closeMobileMenu()" id="mobile-menu-overlay" class="mobile-menu-overlay"></div>
 	</div>

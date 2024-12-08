@@ -479,7 +479,7 @@ nav.mobile-menu {
                 @apply flex items-center gap-x-2 mt-0;
 
                 &.single {
-                    @apply ml-6;
+                    @apply h-8 ml-10;
                 }
 
                 > svg {
@@ -495,7 +495,7 @@ nav.mobile-menu {
                 }
 
                 > a {
-                    @apply no-underline px-0 py-0 transition-all;
+                    @apply no-underline px-4 py-0 transition-all;
 
                     &:hover {
                         > span {
@@ -519,10 +519,10 @@ nav.mobile-menu {
         }
 
         ul {
-            @apply hidden overflow-hidden list-none p-0 m-0 ml-4;
+            @apply hidden overflow-hidden list-none p-0 m-0 ml-8;
 
             ul {
-                @apply list-none p-0 m-0 ml-4;
+                @apply list-none p-0 m-0 ml-8;
 
                 ul {
                     @apply list-none p-0 m-0 ml-8;
@@ -534,7 +534,7 @@ nav.mobile-menu {
                     @apply flex items-center gap-x-2 mt-2;
 
                     &.single {
-                        @apply ml-6;
+                        @apply h-8 ml-8;
                     }
 
                     > svg {

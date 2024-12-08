@@ -13,7 +13,6 @@
 	wp_body_open();
 
 	if (get_field('header_3_enabled', 'option') && check_header_render_condition('3')) {
-		dd('test 3');
 		get_template_part('templates/header', '3');
 	} else if (get_field('header_2_enabled', 'option') && check_header_render_condition('2')) {
 		get_template_part('templates/header', '2');
