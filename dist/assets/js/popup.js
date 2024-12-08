@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",function(){setTimeout(function(){const n=function(){console.log("popup"),window.removeEventListener("scroll",n)};window.addEventListener("scroll",n)},1e3)});
