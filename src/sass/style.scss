@@ -352,7 +352,7 @@ Tags:         silence is golden
     // }
 
     // ::-webkit-scrollbar-thumb {
-    //     @apply bg-orange-500;
+    //     @apply bg-orange-400;
 
     //     &:hover {
     //         @apply bg-orange-400 cursor-grab;
@@ -397,7 +397,7 @@ ul.header-menu {
                 }
 
                 > svg {
-                    @apply fill-orange-500 rotate-180;
+                    @apply fill-orange-400 rotate-180;
                 }
             }
 
@@ -440,7 +440,7 @@ ul.header-menu {
                     }
 
                     > svg {
-                        @apply fill-orange-500 rotate-180;
+                        @apply fill-orange-400 rotate-180;
                     }
                 }
 
@@ -490,11 +490,11 @@ nav.mobile-menu {
                     @apply size-8 fill-green-500 cursor-pointer transition-all;
 
                     &:hover {
-                        @apply fill-orange-500;
+                        @apply fill-orange-400;
                     }
 
                     &.active {
-                        @apply fill-orange-500 rotate-90;
+                        @apply fill-orange-400 rotate-90;
                     }
                 }
 
@@ -545,11 +545,11 @@ nav.mobile-menu {
                         @apply size-6 fill-green-500 cursor-pointer transition-all;
 
                         &:hover {
-                            @apply fill-orange-500;
+                            @apply fill-orange-400;
                         }
 
                         &.active {
-                            @apply fill-orange-500 rotate-90;
+                            @apply fill-orange-400 rotate-90;
                         }
                     }
 
