@@ -430,7 +430,7 @@ ul.header-menu {
             @apply relative;
 
             > a {
-                @apply no-underline flex justify-between items-center gap-x-2 px-4 py-1 transition-all;
+                @apply no-underline flex justify-between items-center gap-x-2 pl-6 pr-4 py-1 transition-all;
 
                 &:hover {
                     @apply bg-green-500/10;
