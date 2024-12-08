@@ -13,6 +13,16 @@ function dd($value)
 }
 
 /**
+ * Is in development mode
+ *
+ * @return boolean
+ */
+function is_dev()
+{
+	return file_exists(__DIR__ . '/../dev.flag');
+}
+
+/**
  * Print 'debug-screens' if in development mode
  *
  * @return void
