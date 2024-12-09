@@ -31,17 +31,13 @@
 			get_template_part('templates/' . str_replace('_', '-', $header_bottom_banner['acf_fc_layout']), null, $header_bottom_banner);
 		}
 	}
-
-	if (is_dev()) {
 	?>
-		<script type="module" src="https://catest.test:5173/src/js/popup.js"></script>
-	<?php
-	} else {
-	?>
-		<script type="module" src="/wp-content/themes/thecareeracademy/dist/assets/js/popup.js?ver=<?php echo wp_get_theme()->get('Version'); ?>"></script>
-	<?php
-	}
 
+	<script>
+		window.popups = !!<?php echo json_encode(get_field('popups', 'option')); ?>.length;
+	</script>
+
+	<?php
 	foreach (get_field('popups', 'option') as $popup_index => $popup) {
 		if ($popup['enabled'] && check_render_condition_for_flexible_content($popup['acf_fc_layout'] . '_' . ++$popup_index, $popup['include_pages'], $popup['include_categories'], $popup['include_product_categories'], $popup['include_subject_categories'], $popup['exclude_pages'], $popup['exclude_categories'], $popup['exclude_product_categories'], $popup['exclude_subject_categories'])) {
 			get_template_part('templates/' . str_replace('_', '-', $popup['acf_fc_layout']), null, $popup);
