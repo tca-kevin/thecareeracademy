@@ -1,5 +1,5 @@
 <!doctype html>
-<html <?php language_attributes(); ?> class="h-full">
+<html <?php language_attributes(); ?>>
 
 <head>
 	<?php
@@ -23,7 +23,7 @@
 	?>
 </head>
 
-<body <?php body_class(print_debug_screens_if_in_development_mode() . ' h-full'); ?>>
+<body <?php body_class(print_debug_screens_if_in_development_mode()); ?>>
 	<?php
 	wp_body_open();
 
