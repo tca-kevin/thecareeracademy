@@ -7,10 +7,10 @@
 			</svg>
 			<div class="flex flex-row flex-wrap justify-content-start items-start">
 				<div class="basis-full flex lg:hidden">
-					<img data-src="<?php echo $args['image_file_2']['url']; ?>" alt="<?php echo $args['image_file_2']['alt']; ?>" width="<?php echo $args['image_file_2']['width']; ?>" height="<?php echo $args['image_file_2']['height']; ?>" style="height: <?php echo $args['image_file_2']['height']; ?>px;" class="lazy object-contain object-center w-full h-auto" />
+					<img data-src="<?php echo $args['image_file_2']['url']; ?>" alt="<?php echo $args['image_file_2']['alt']; ?>" width="<?php echo $args['image_file_2']['width']; ?>" height="<?php echo $args['image_file_2']['height']; ?>" class="lazy object-contain object-center w-full h-auto" />
 				</div>
 				<div class="basis-4/12 hidden lg:flex">
-					<img data-src="<?php echo $args['image_file']['url']; ?>" alt="<?php echo $args['image_file']['alt']; ?>" width="<?php echo $args['image_file']['width']; ?>" height="<?php echo $args['image_file']['height']; ?>" style="height: <?php echo $args['image_file']['height']; ?>px;" class="lazy object-contain object-center w-full h-auto" />
+					<img data-src="<?php echo $args['image_file']['url']; ?>" alt="<?php echo $args['image_file']['alt']; ?>" width="<?php echo $args['image_file']['width']; ?>" height="<?php echo $args['image_file']['height']; ?>" class="lazy object-contain object-center w-full h-auto" />
 				</div>
 				<div class="basis-full lg:basis-8/12 px-8 py-8">
 					<?php echo $args['iframe']; ?>

@@ -6,7 +6,7 @@
 				<path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
 			</svg>
 			<a href="<?php echo $args['image_link']['url']; ?>" aria-label="<?php echo $args['image_link']['title']; ?>" target="<?php echo $args['image_link']['target']; ?>">
-				<img data-src="<?php echo $args['image_file']['url']; ?>" alt="<?php echo $args['image_file']['alt']; ?>" width="<?php echo $args['image_file']['width']; ?>" height="<?php echo $args['image_file']['height']; ?>" style="height: <?php echo $args['image_file']['height']; ?>px;" class="lazy object-contain object-center w-full h-auto" />
+				<img data-src="<?php echo $args['image_file']['url']; ?>" alt="<?php echo $args['image_file']['alt']; ?>" width="<?php echo $args['image_file']['width']; ?>" height="<?php echo $args['image_file']['height']; ?>" class="lazy object-contain object-center w-full h-auto" />
 			</a>
 		</div>
 	</div>
