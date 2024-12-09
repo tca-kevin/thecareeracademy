@@ -130,7 +130,7 @@ function manage_scripts_and_styles_after_body_open()
 	<?php
 	} else {
 	?>
-		<script type="module" src="https://catest.test/wp-content/themes/thecareeracademy/dist/assets/js/header.js?ver=<?php echo wp_get_theme()->get('Version'); ?>"></script>
+		<script type="module" src="/wp-content/themes/thecareeracademy/dist/assets/js/header.js?ver=<?php echo wp_get_theme()->get('Version'); ?>"></script>
 	<?php
 	}
 }
@@ -150,7 +150,7 @@ function manage_scripts_and_styles_before_body_close()
 	<?php
 	} else {
 	?>
-		<script type="module" src="https://catest.test/wp-content/themes/thecareeracademy/dist/assets/js/lazyload.js?ver=<?php echo wp_get_theme()->get('Version'); ?>"></script>
+		<script type="module" src="/wp-content/themes/thecareeracademy/dist/assets/js/lazyload.js?ver=<?php echo wp_get_theme()->get('Version'); ?>"></script>
 <?php
 	}
 }

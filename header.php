@@ -38,7 +38,7 @@
 	<?php
 	} else {
 	?>
-		<script type="module" src="https://catest.test/wp-content/themes/thecareeracademy/dist/assets/js/popup.js?ver=<?php echo wp_get_theme()->get('Version'); ?>"></script>
+		<script type="module" src="/wp-content/themes/thecareeracademy/dist/assets/js/popup.js?ver=<?php echo wp_get_theme()->get('Version'); ?>"></script>
 	<?php
 	}
 
