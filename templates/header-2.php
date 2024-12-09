@@ -1,5 +1,4 @@
 <?php $menu_items = get_menu_items('header'); ?>
-
 <header class="shadow-md">
 	<div class="relative container mx-auto px-4 flex justify-start items-center gap-x-8 h-20">
 		<a href="<?php echo home_url(); ?>" aria-label="<?php echo __('Company Logo', 'thecareeracademy'); ?>" class="block lg:hidden xl:block h-16">
@@ -197,11 +196,11 @@
 				</a>
 			</div>
 		</nav>
-		<svg onclick="openMobileMenu()" class="mobile-menu-open-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+		<svg id="mobile-menu-open-button" class="mobile-menu-open-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
 			<path fill-rule="evenodd" d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75H12a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
 		</svg>
 		<nav id="mobile-menu" class="mobile-menu">
-			<svg onclick="closeMobileMenu()" class="mobile-menu-close-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+			<svg id="mobile-menu-close-button" class="mobile-menu-close-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
 				<path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
 			</svg>
 			<div class="flex justify-between items-end px-4 md:px-8 pt-4 md:pt-8 pb-4">
@@ -426,6 +425,6 @@
 				</a>
 			</div>
 		</nav>
-		<div onclick="closeMobileMenu()" id="mobile-menu-overlay" class="mobile-menu-overlay"></div>
+		<div id="mobile-menu-overlay" class="mobile-menu-overlay"></div>
 	</div>
 </header>

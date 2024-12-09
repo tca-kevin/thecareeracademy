@@ -7,12 +7,12 @@
  */
 function add_admin_colour_scheme()
 {
-	wp_admin_css_color(
-		'the_career_academy',
-		__('The Career Academy'),
-		get_stylesheet_directory_uri() . '/admin.css',
-		array('#006353', '#fff', '#ff6238', '#ff6238')
-	);
+    wp_admin_css_color(
+        'the_career_academy',
+        __('The Career Academy'),
+        get_stylesheet_directory_uri() . '/admin.css',
+        array('#006353', '#fff', '#ff6238', '#ff6238')
+    );
 }
 
 add_action('admin_init', 'add_admin_colour_scheme');
@@ -24,7 +24,7 @@ add_action('admin_init', 'add_admin_colour_scheme');
  */
 function add_admin_login_logo()
 {
-	echo '
+    echo '
     <style type="text/css">
         body.login h1 a {
             background-image: url("' . get_stylesheet_directory_uri() . '/admin-logo.png") !important;
@@ -44,7 +44,7 @@ add_action('login_head', 'add_admin_login_logo');
  */
 function add_admin_login_background()
 {
-	echo '<style type="text/css">
+    echo '<style type="text/css">
         body.login {
             background: url("' . get_stylesheet_directory_uri() . '/admin.png") no-repeat center center fixed;
             background-size: cover;
@@ -61,9 +61,42 @@ add_action('login_head', 'add_admin_login_background');
  */
 function enable_svg_support_in_admin_panel($mimes)
 {
-	$mimes['svg'] = 'image/svg+xml';
+    $mimes['svg'] = 'image/svg+xml';
 
-	return $mimes;
+    return $mimes;
 }
 
 add_filter('upload_mimes', 'enable_svg_support_in_admin_panel');
+
+/**
+ * Enable iframe on admin and frontend
+ *
+ * @param [type] $initArray
+ * @return void
+ */
+function enable_iframe_on_admin_and_frontend($tags)
+{
+    // if (current_user_can('administrator') || current_user_can('editor')) {
+    // 	$tags['iframe'] = array(
+    // 		'src'             => true,
+    // 		'width'           => true,
+    // 		'height'          => true,
+    // 		'frameborder'     => true,
+    // 		'allow'           => true,
+    // 		'allowfullscreen' => true,
+    // 	);
+    // }
+
+    $tags['iframe'] = array(
+        'src'             => true,
+        'width'           => true,
+        'height'          => true,
+        'frameborder'     => true,
+        'allow'           => true,
+        'allowfullscreen' => true,
+    );
+
+    return $tags;
+}
+
+add_filter('wp_kses_allowed_html', 'enable_iframe_on_admin_and_frontend', 10, 2);

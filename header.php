@@ -10,17 +10,6 @@
 
 <body <?php body_class(print_debug_screens_if_in_development_mode() . ' h-full'); ?>>
 	<?php
-
-	if (is_dev()) {
-	?>
-		<script type="module" src="https://catest.test:5173/src/js/header.js"></script>
-	<?php
-	} else {
-	?>
-		<script type="module" src="https://catest.test/wp-content/themes/thecareeracademy/dist/assets/js/header.js?ver=<?php echo wp_get_theme()->get('Version'); ?>"></script>
-	<?php
-	}
-
 	wp_body_open();
 
 	foreach (get_field('header_top_banners', 'option') as $header_top_banner_index => $header_top_banner) {

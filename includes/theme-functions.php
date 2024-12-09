@@ -122,7 +122,18 @@ add_action('wp_enqueue_scripts', 'manage_scripts_and_styles_before_head_close', 
  *
  * @return void
  */
-function manage_scripts_and_styles_after_body_open() {}
+function manage_scripts_and_styles_after_body_open()
+{
+	if (is_dev()) {
+?>
+		<script type="module" src="https://catest.test:5173/src/js/header.js"></script>
+	<?php
+	} else {
+	?>
+		<script type="module" src="https://catest.test/wp-content/themes/thecareeracademy/dist/assets/js/header.js?ver=<?php echo wp_get_theme()->get('Version'); ?>"></script>
+	<?php
+	}
+}
 
 add_action('wp_body_open', 'manage_scripts_and_styles_after_body_open');
 
@@ -134,7 +145,7 @@ add_action('wp_body_open', 'manage_scripts_and_styles_after_body_open');
 function manage_scripts_and_styles_before_body_close()
 {
 	if (is_dev()) {
-?>
+	?>
 		<script type="module" src="https://catest.test:5173/src/js/lazyload.js"></script>
 	<?php
 	} else {
