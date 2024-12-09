@@ -15,7 +15,7 @@
 				<div class="basis-full lg:basis-8/12 px-8 py-8">
 					<?php echo $args['iframe']; ?>
 					<div class="font-sans">
-						<?php echo $args['description']; ?>
+						<?php echo $args['paragraph']; ?>
 					</div>
 				</div>
 			</div>
