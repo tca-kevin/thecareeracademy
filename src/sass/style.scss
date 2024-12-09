@@ -427,10 +427,14 @@ ul.header-menu {
         }
 
         li {
-            @apply relative;
+            @apply relative pt-2;
+
+            &:last-of-type {
+                @apply pb-2;
+            }
 
             > a {
-                @apply no-underline flex justify-between items-center gap-x-2 pl-6 pr-4 py-1 my-px transition-all;
+                @apply no-underline flex justify-between items-center gap-x-2 pl-6 pr-4 py-1 transition-all;
 
                 &:hover {
                     @apply bg-green-500/10;
@@ -469,7 +473,7 @@ svg.mobile-menu-open-button {
 }
 
 nav.mobile-menu {
-    @apply fixed z-30 top-0 right-0 max-w-xs sm:max-w-sm md:max-w-md w-0 h-full bg-white shadow-md overflow-x-hidden transition-all;
+    @apply fixed z-30 top-0 right-0 max-w-full md:max-w-md w-0 h-full bg-white shadow-md overflow-x-hidden transition-all;
 
     svg.mobile-menu-close-button {
         @apply absolute top-4 right-4 size-10 fill-black cursor-pointer transition-all hover:fill-green-500;
@@ -480,7 +484,7 @@ nav.mobile-menu {
 
         > li {
             > div {
-                @apply flex items-center gap-x-2 mt-0;
+                @apply flex items-center gap-x-2;
 
                 &.single {
                     @apply h-8 ml-10;
@@ -534,8 +538,10 @@ nav.mobile-menu {
             }
 
             li {
+                @apply pt-2;
+
                 > div {
-                    @apply flex items-center gap-x-2 mt-2;
+                    @apply flex items-center gap-x-2;
 
                     &.single {
                         @apply h-8 ml-8;
@@ -554,7 +560,7 @@ nav.mobile-menu {
                     }
 
                     > a {
-                        @apply no-underline px-4 py-1 my-px transition-all;
+                        @apply no-underline px-4 py-1 transition-all;
 
                         &:hover {
                             @apply bg-green-500/10;
