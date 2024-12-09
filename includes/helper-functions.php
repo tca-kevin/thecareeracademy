@@ -19,7 +19,7 @@ function dd($value)
  */
 function is_dev()
 {
-	return file_exists(__DIR__ . '/../dev.flag');
+	return file_exists(get_template_directory() . '/dev.flag');
 }
 
 /**
@@ -29,7 +29,7 @@ function is_dev()
  */
 function print_debug_screens_if_in_development_mode()
 {
-	return file_exists(__DIR__ . '/../dev.flag') ? 'debug-screens' : '';
+	return file_exists(get_template_directory() . '/dev.flag') ? 'debug-screens' : '';
 }
 
 /**

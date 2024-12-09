@@ -1,7 +1,7 @@
 // lazyload
 import LazyLoad from "vanilla-lazyload";
 
-var lazyLoadInstance = new LazyLoad({});
+new LazyLoad({});
 
 document.addEventListener('DOMContentLoaded', function () {
 	// headers

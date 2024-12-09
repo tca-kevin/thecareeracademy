@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<div class="min-h-full container mx-auto px-4 flex flex-col justify-center items-center gap-y-4">
+<div class="container mx-auto px-4 py-48 flex flex-col justify-center items-center gap-y-4">
 	<p class="font-sans font-semibold text-8xl lg:text-9xl text-green-500 text-center my-0">404</p>
 	<h1 class="font-sans font-semibold text-3xl lg:text-6xl text-black text-center my-0"><?php echo __('Page not found', 'thecareeracademy'); ?></h1>
 	<p class="font-sans font-normal text-lg lg:text-xl text-stone-500 text-center my-0"><?php echo __('Sorry, we couldn\'t find the page you\'re looking for.', 'thecareeracademy'); ?></p>

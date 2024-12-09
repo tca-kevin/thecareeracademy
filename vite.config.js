@@ -12,6 +12,7 @@ const commonConfig = {
 			input: {
 				'dist/assets/js/app': resolve(__dirname, 'src/js/app.js'),
 				'dist/assets/js/style': resolve(__dirname, 'src/js/style.js'),
+				'dist/assets/js/company-location-google-maps': resolve(__dirname, 'src/js/company-location-google-maps.js'),
 				'style': resolve(__dirname, 'src/sass/style.scss'),
 				'app': resolve(__dirname, 'src/sass/app.scss'),
 			},
