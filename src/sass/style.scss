@@ -371,11 +371,11 @@ Tags:         silence is golden
         @apply touch-manipulation m-0;
     }
 
-    .font-sans,
-    .font-serif,
-    .font-mono {
-        letter-spacing: 0.0625rem;
-    }
+    // .font-sans,
+    // .font-serif,
+    // .font-mono {
+    //     letter-spacing: 0.0625rem;
+    // }
 
     a {
         @apply no-underline text-orange-500 transition-all hover:text-orange-400;
