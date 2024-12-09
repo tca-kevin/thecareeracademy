@@ -93,14 +93,16 @@ define('PRODUCT_CATEGORIES', [
 
 define('PAGES', [
 	'home' => 'Home',
+	'about-our-tutors' => 'About Our Tutors',
 	'about-us' => 'About Us',
 	'add-ons' => 'Add Ons',
-	'about-our-tutors' => 'About Our Tutors',
 	'blogs' => 'Blogs',
+	'cancel' => 'Cancellation',
 	'career-centre' => 'Career Centre',
 	'contact-us' => 'Contact Us',
 	'enrol-now' => 'Enrol Now',
 	'faqs' => 'Frequently Asked Questions',
+	'graduation' => 'Graduation',
 	'next-steps' => 'Next Steps',
 	'privacy-policy' => 'Privacy Policy',
 	'reviews-and-student-stories' => 'Reviews & Student Stories',
