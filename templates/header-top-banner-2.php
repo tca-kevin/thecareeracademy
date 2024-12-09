@@ -8,7 +8,7 @@
 				echo $args['paragraph_during'];
 				if (get_field('company_phone_number', 'option')) {
 				?>
-					<a href="<?php echo get_field('company_phone_number', 'option')['url']; ?>" aria-label="<?php echo get_field('company_phone_number', 'option')['url']; ?>" target="<?php echo get_field('company_phone_number', 'option')['target']; ?>" class="font-semibold text-white transition-all hover:text-green-500"><?php echo get_field('company_phone_number', 'option')['title']; ?></a>
+					<a href="<?php echo get_field('company_phone_number', 'option')['url']; ?>" aria-label="<?php echo get_field('company_phone_number', 'option')['url']; ?>" target="<?php echo get_field('company_phone_number', 'option')['target']; ?>" class="text-white transition-all hover:text-green-500"><?php echo get_field('company_phone_number', 'option')['title']; ?></a>
 				<?php
 				}
 				echo $args['paragraph_after'];
