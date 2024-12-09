@@ -469,7 +469,7 @@ svg.mobile-menu-open-button {
 }
 
 nav.mobile-menu {
-    @apply fixed z-30 top-0 right-0 max-w-xs sm:max-w-sm md:max-w-md w-0 h-full bg-white shadow-lg overflow-x-hidden transition-all;
+    @apply fixed z-30 top-0 right-0 max-w-xs sm:max-w-sm md:max-w-md w-0 h-full bg-white shadow-md overflow-x-hidden transition-all;
 
     svg.mobile-menu-close-button {
         @apply absolute top-4 right-4 size-10 fill-black cursor-pointer transition-all hover:fill-green-500;

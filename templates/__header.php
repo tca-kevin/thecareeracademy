@@ -247,7 +247,7 @@ $menu_items = menu_build_tree(wp_get_nav_menu_items(get_nav_menu_locations()['he
 					<div x-dialog:overlay x-transition.opacity x-on:click="$dialog.close()" class="fixed inset-0 bg-black/25 cursor-pointer"></div>
 					<div class="fixed inset-y-0 right-0 max-w-xs sm:max-w-sm md:max-w-md w-full max-h-dvh min-h-dvh">
 						<div x-dialog:panel x-transition:enter="transition ease-out duration-300" x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full" class="h-full w-full">
-							<div class="h-full flex flex-col bg-white shadow-lg overflow-y-auto px-8 py-16">
+							<div class="h-full flex flex-col bg-white shadow-md overflow-y-auto px-8 py-16">
 								<div class="absolute right-0 top-0 mr-4 mt-4">
 									<div x-on:click="$dialog.close()">
 										<svg class="size-10 rotate-180 fill-black cursor-pointer transition-all hover:fill-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
