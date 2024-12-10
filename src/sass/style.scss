@@ -429,8 +429,12 @@ ul.header-menu {
         li {
             @apply relative pt-0.5;
 
+            &:first-of-type {
+                @apply pt-1;
+            }
+
             &:last-of-type {
-                @apply pb-0.5;
+                @apply pb-1;
             }
 
             > a {
