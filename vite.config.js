@@ -12,9 +12,11 @@ const commonConfig = {
 			input: {
 				'dist/assets/js/app': resolve(__dirname, 'src/js/app.js'),
 				'dist/assets/js/style': resolve(__dirname, 'src/js/style.js'),
+				'dist/assets/js/alpine': resolve(__dirname, 'src/js/alpine.js'),
 				'dist/assets/js/company-location-google-maps': resolve(__dirname, 'src/js/company-location-google-maps.js'),
 				'style': resolve(__dirname, 'src/sass/style.scss'),
 				'app': resolve(__dirname, 'src/sass/app.scss'),
+				'company-location-google-maps': resolve(__dirname, 'src/sass/company-location-google-maps.scss'),
 			},
 			output: {
 				entryFileNames: () => {
@@ -60,7 +62,7 @@ if (env?.DEV_ENV === "docker") {
 		server: {
 			host: "0.0.0.0",
 			protocol: 'wss', // Use 'wss' if HTTPS
-			port: 5173,
+			port: env?.VITE_PORT,
 			hmr: {
 				host: env?.APP_HOST,
 			},
@@ -79,7 +81,7 @@ if (env?.DEV_ENV === "docker") {
 		server: {
 			host: "127.0.0.1",
 			protocol: 'wss', // Use 'wss' if HTTPS
-			port: 5173,
+			port: env?.VITE_PORT,
 			hmr: {
 				host: env?.APP_HOST,
 			},

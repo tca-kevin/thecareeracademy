@@ -75,11 +75,11 @@ function manage_scripts_and_styles_after_head_open()
 
 	// wp_enqueue_style('adobe-fonts', 'https://use.typekit.net/phd3vdh.css', array(), null);
 
-	if (defined('VITE_DEV') && VITE_DEV) {
-		wp_enqueue_script('src-vite-dev', get_site_url() . ':5173/@vite/client', array(), null);
+	if (is_dev()) {
+		wp_enqueue_script('src-vite-dev', get_site_url() . ':' . VITE_PORT . '/@vite/client', array(), null);
 
-		wp_enqueue_script('src-js-app', get_site_url() . ':5173/src/js/app.js', array(), null);
-		wp_enqueue_style('src-sass-style', get_site_url() . ':5173/src/sass/style.scss', array(), null);
+		wp_enqueue_script('src-js-app', get_site_url() . ':' . VITE_PORT . '/src/js/app.js', array(), null);
+		wp_enqueue_style('src-sass-style', get_site_url() . ':' . VITE_PORT . '/src/sass/style.scss', array(), null);
 	} else {
 		wp_enqueue_script('dist-assets-js-app', get_stylesheet_directory_uri() . '/dist/assets/js/app.js', array(), wp_get_theme()->get('Version'));
 		wp_enqueue_style('style', get_stylesheet_uri(), array(), wp_get_theme()->get('Version'));
