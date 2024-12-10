@@ -13,10 +13,10 @@ const commonConfig = {
 				'dist/assets/js/app': resolve(__dirname, 'src/js/app.js'),
 				'dist/assets/js/style': resolve(__dirname, 'src/js/style.js'),
 				'dist/assets/js/alpine': resolve(__dirname, 'src/js/alpine.js'),
-				'dist/assets/js/company-location-google-maps': resolve(__dirname, 'src/js/company-location-google-maps.js'),
+				'dist/assets/js/google-maps-company-location': resolve(__dirname, 'src/js/google-maps-company-location.js'),
 				'style': resolve(__dirname, 'src/sass/style.scss'),
 				'app': resolve(__dirname, 'src/sass/app.scss'),
-				'company-location-google-maps': resolve(__dirname, 'src/sass/company-location-google-maps.scss'),
+				'google-maps-company-location': resolve(__dirname, 'src/sass/google-maps-company-location.scss'),
 			},
 			output: {
 				entryFileNames: () => {
