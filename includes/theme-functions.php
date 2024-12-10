@@ -200,9 +200,9 @@ function modify_script_tags($tag, $handle, $src)
 		// $tag = '<link rel="preload" as="script" href="' . $src . '" />';
 	}
 
-	if ($handle === 'jquery-core' || $handle === 'jquery-migrate') {
-		$tag = str_replace('></script', ' defer></script', $tag);
-	}
+	// if ($handle === 'jquery-core' || $handle === 'jquery-migrate') {
+	// 	$tag = str_replace('></script', ' defer></script', $tag);
+	// }
 
 	return $tag;
 }
