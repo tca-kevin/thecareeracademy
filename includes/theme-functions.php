@@ -94,6 +94,8 @@ function manage_scripts_and_styles_after_head_open()
 		wp_dequeue_style('woocommerce-smallscreen'); // /wp-content/plugins/woocommerce/assets/css/woocommerce-smallscreen.css
 		wp_dequeue_style('woocommerce-general'); // /wp-content/plugins/woocommerce/assets/css/woocommerce.css
 		wp_dequeue_style('woocommerce-inline'); // id='woocommerce-inline-inline-css'
+		wp_dequeue_script('wc-add-to-cart'); // id="wc-add-to-cart-js-extra" | <![CDATA[]]> | id="wc-add-to-cart-js"
+        wp_deregister_script('js-cookie'); // id="jquery-blockui-js" | id="js-cookie-js" | id="woocommerce-js-extra" | <![CDATA[]]> | id="woocommerce-js"
 
 		// wp_dequeue_style('wp-block-library-theme'); // id='wp-block-library-theme-inline-css', Storefront Child theme experiment
 		// wp_dequeue_style('storefront-gutenberg-blocks'); // id='storefront-gutenberg-blocks-inline-css', Storefront Child theme experiment
@@ -145,7 +147,7 @@ function manage_scripts_and_styles_before_loading_any_template()
 {
 	if (is_front_page()) {
 		remove_action('wp_head', 'wp_print_auto_sizes_contain_css_fix', 1); // img:is([sizes="auto" i], [sizes^="auto," i])
-		remove_action('wp_head', 'print_emoji_detection_script', 7); // <![CDATA[]]> | /wp-includes/js/wp-emoji-release.min.js?
+		remove_action('wp_head', 'print_emoji_detection_script', 7); // <![CDATA[]]> | /wp-includes/js/wp-emoji-release.min.js
 		remove_action('wp_print_styles', 'print_emoji_styles'); // id='wp-emoji-styles-inline-css'
 		remove_action('wp_enqueue_scripts', 'wp_enqueue_classic_theme_styles'); // id='classic-theme-styles-inline-css'
 		remove_action('wp_enqueue_scripts', 'wp_enqueue_global_styles'); // id='global-styles-inline-css'
