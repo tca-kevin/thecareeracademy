@@ -1,4 +1,4 @@
-<div id="map" class="relative -z-10 w-full" style="height: 50dvh;"></div>
+<div id="map" class="relative w-full" style="height: 50dvh;"></div>
 <script>
 	window.google_maps_api_key = "<?php echo get_field('google_maps_api_key', 'option'); ?>";
 	window.company_lat = <?php echo get_field('company_latitude', 'option'); ?>;

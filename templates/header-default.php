@@ -1,5 +1,5 @@
 <?php $menu_items = get_menu_items('header'); ?>
-<header class="shadow-md">
+<header class="relative z-10 shadow-md">
 	<div class="relative container mx-auto px-4 flex justify-start items-center gap-x-8 h-20">
 		<a href="<?php echo home_url(); ?>" aria-label="<?php echo __('Company Logo', 'thecareeracademy'); ?>" class="block lg:hidden xl:block h-16">
 			<svg class="h-16 transition-all hover:fill-green-500" version="1.1" id="The_Career_Academy" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"

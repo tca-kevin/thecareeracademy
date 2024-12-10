@@ -427,14 +427,14 @@ ul.header-menu {
         }
 
         li {
-            @apply relative pt-2;
+            @apply relative pt-0.5;
 
             &:last-of-type {
-                @apply pb-2;
+                @apply pb-0.5;
             }
 
             > a {
-                @apply no-underline flex justify-between items-center gap-x-2 pl-6 pr-4 py-1 transition-all;
+                @apply no-underline flex justify-between items-center gap-x-2 pl-6 pr-4 py-0 transition-all;
 
                 &:hover {
                     @apply bg-green-500/10;
@@ -538,13 +538,13 @@ nav.mobile-menu {
             }
 
             li {
-                @apply pt-2;
+                @apply pt-0.5;
 
                 > div {
                     @apply flex items-center gap-x-2;
 
                     &.single {
-                        @apply h-8 ml-8;
+                        @apply h-6 ml-8;
                     }
 
                     > svg {
@@ -560,7 +560,7 @@ nav.mobile-menu {
                     }
 
                     > a {
-                        @apply no-underline px-4 py-1 transition-all;
+                        @apply no-underline px-4 py-0 transition-all;
 
                         &:hover {
                             @apply bg-green-500/10;
@@ -579,7 +579,7 @@ nav.mobile-menu {
                         }
 
                         > span {
-                            @apply font-sans font-medium text-base text-black leading-none;
+                            @apply font-sans font-medium text-base text-black;
                         }
                     }
                 }
