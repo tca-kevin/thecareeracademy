@@ -7,7 +7,7 @@
  */
 function set_up_theme()
 {
-	// add_theme_support('woocommerce'); // Storefront Child experiment
+	// add_theme_support('woocommerce'); // Storefront Child theme experiment
 
 	load_theme_textdomain('thecareeracademy', get_template_directory() . '/languages');
 	add_theme_support('title-tag');
@@ -71,7 +71,7 @@ function preload_custom_fonts_in_head_tag()
  */
 function manage_scripts_and_styles_after_head_open()
 {
-	// wp_enqueue_style('storefront-style', get_template_directory_uri() . '/style.css'); // Storefront Child experiment
+	// wp_enqueue_style('storefront-style', get_template_directory_uri() . '/style.css'); // Storefront Child theme experiment
 
 	// wp_enqueue_style('adobe-fonts', 'https://use.typekit.net/phd3vdh.css', array(), null);
 
@@ -94,10 +94,10 @@ function manage_scripts_and_styles_after_head_open()
 		wp_dequeue_style('woocommerce-general'); // /wp-content/plugins/woocommerce/assets/css/woocommerce.css
 		wp_dequeue_style('woocommerce-inline'); // id='woocommerce-inline-inline-css'
 
-		// wp_dequeue_style('wp-block-library-theme'); // id='wp-block-library-theme-inline-css', Storefront Child experiment
-		// wp_dequeue_style('storefront-gutenberg-blocks'); // id='storefront-gutenberg-blocks-inline-css', Storefront Child experiment
-		// add_filter('storefront_customizer_css', '__return_false'); // id='storefront-style-inline-css', Storefront Child experiment
-		// add_filter('storefront_customizer_woocommerce_css', '__return_false'); // id='storefront-woocommerce-style-inline-css', Storefront Child experiment
+		// wp_dequeue_style('wp-block-library-theme'); // id='wp-block-library-theme-inline-css', Storefront Child theme experiment
+		// wp_dequeue_style('storefront-gutenberg-blocks'); // id='storefront-gutenberg-blocks-inline-css', Storefront Child theme experiment
+		// add_filter('storefront_customizer_css', '__return_false'); // id='storefront-style-inline-css', Storefront Child theme experiment
+		// add_filter('storefront_customizer_woocommerce_css', '__return_false'); // id='storefront-woocommerce-style-inline-css', Storefront Child theme experiment
 	}
 }
 
@@ -191,9 +191,9 @@ function modify_script_tags($tag, $handle, $src)
 		// $tag = '<link rel="preload" as="script" href="' . $src . '" />';
 	}
 
-	// if ($handle === '') {
-	// 	$tag = '<script type="text/javascript" src="' . $src . '" defer></script>';
-	// }
+	if ($handle === 'jquery') {
+		$tag = '<script type="text/javascript" src="' . $src . '" defer></script>';
+	}
 
 	return $tag;
 }
