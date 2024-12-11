@@ -1,4 +1,4 @@
-<div class="popup fixed z-10 inset-0" style="display: none;">
+<div class="popup fixed z-20 inset-0" style="display: none;">
 	<div class="popup-overlay absolute inset-0 bg-green-500/50 cursor-pointer"></div>
 	<div class="flex items-center justify-center min-w-screen min-h-screen h-3/6 sm:h-4/6 md:h-5/6 lg:h-auto px-4">
 		<div class="relative bg-white w-full sm:w-9/12 lg:w-10/12 xl:w-9/12 2xl:w-6/12 h-3/6 sm:h-4/6 md:h-5/6 lg:h-auto overflow-y-scroll lg:overflow-y-hidden shadow-md">

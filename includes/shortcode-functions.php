@@ -25,6 +25,18 @@ function shortcode_company_payment_plan_price_per_week()
 add_shortcode('company_payment_plan_price_per_week', 'shortcode_company_payment_plan_price_per_week');
 
 /**
+ * Shortcode company number of students
+ *
+ * @return void
+ */
+function shortcode_company_number_of_students()
+{
+	return get_field('company_number_of_students', 'option');
+}
+
+add_shortcode('company_number_of_students', 'shortcode_company_number_of_students');
+
+/**
  * Shortcode company phone number
  *
  * @return void

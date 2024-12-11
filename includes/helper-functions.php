@@ -19,7 +19,7 @@ function dd($value)
  */
 function is_dev()
 {
-	return defined('VITE_DEV') && VITE_DEV && file_exists(get_template_directory() . '/dev.flag');
+	return file_exists(get_template_directory() . '/dev.flag');
 }
 
 /**
